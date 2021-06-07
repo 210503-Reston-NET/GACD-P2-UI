@@ -1,29 +1,25 @@
 .PHONY: build run clean test clearlogs publish
 
 #solution_root is the directory containing the root .sln file
-solution_root_BL = AppBL
-solution_root_UI = AppUI	
+solution_root = AppUI	
 
 #solution_main is the directory containing the project with a main method. Relative to solution_root.
-solution_main_BL = GACDRest
-solution_main_UI = GACDAngular
+solution_main = GACDAngular
 
-solution_dl = $(solution_root_BL)/GACDDL
+solution_dl = $(solution_root)/GACDDL
 
 #log_dir is the name of directory with logs relative to solution_root
 log_dir = logs
 restore:
-	dotnet restore ./$(solution_root_BL);
-	dotnet restore ./$(solution_root_UI)
+	dotnet restore ./$(solution_root)
 build:
-	dotnet build $(solution_root_BL);
-	dotnet build $(solution_root_UI)
+	dotnet build $(solution_root)
 runui: 
-	dotnet run --project $(solution_root_UI)/$(solution_main_UI)
+	dotnet run --project $(solution_root)/$(solution_main)
 runbl: 
-	dotnet run --project $(solution_root_BL)/$(solution_main_BL)
+	dotnet run --project $(solution_root)/$(solution_main)
 test:
-	dotnet test $(solution_root_BL)
+	dotnet test $(solution_root)
 publish:
 # dotnet publish  $(solution_root)/$(solution_main) -c Release -o $(solution_root)/$(solution_main)/publish
 rebuild-db:
@@ -32,8 +28,6 @@ rebuild-db:
 	cd ./$(solution_dl) && dotnet ef migrations add newMigration -c StoreDBContext --startup-project ../$(solution_main_BL);
 	cd ./$(solution_dl) && dotnet ef database update newMigration --startup-project ../$(solution_main_BL)
 clean: clearlogs
-	dotnet clean $(solution_root_BL);
-	dotnet clean $(solution_root_UI)
+	dotnet clean $(solution_root)
 clearlogs:
-	rm -f $(solution_root_BL)/$(log_dir)/*;
-	rm -f $(solution_root_UI)/$(log_dir)/*;
+	rm -f $(solution_root)/$(log_dir)/*
