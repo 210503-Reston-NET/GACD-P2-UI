@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
 import {UserService} from 'src/Services/User.service';
 
-
 const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email: "user1@gmail.com"},
 { id: 2, name: "Chris Hazel", username:"user2", email: "user2@gmail.com"},
 { id: 3, name: "Mike Angle", username:"user3", email: "user3@gmail.com"},
