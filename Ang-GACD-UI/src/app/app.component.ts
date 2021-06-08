@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
-import {UserService} from 'src/Services/User.service';
+import { UserService } from 'src/Services/User.service';
+import { TestService } from 'src/Services/Test.Service'
 
-
-const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email: "user1@gmail.com"},
-{ id: 2, name: "Chris Hazel", username:"user2", email: "user2@gmail.com"},
-{ id: 3, name: "Mike Angle", username:"user3", email: "user3@gmail.com"},
-{ id: 4, name: "Hifumi Nozaki", username:"user4", email: "user4@gmail.com"},
-{ id: 5, name: "Bernadette Bacara", username:"user5", email: "user5@gmail.com"}]
 
 @Component({
   selector: 'app-root',
@@ -18,8 +13,9 @@ export class AppComponent {
   title = 'Kwik-Koder';
 
   User: any = [];
+  Test: any;
 
-  constructor(private userserv : UserService){
+  constructor(private userserv : UserService, private testserv : TestService){
   }
 
   ngOnInit(){
@@ -33,5 +29,13 @@ export class AppComponent {
     })
   }
 
-  
+  GenerateTest()
+  {
+    return this.testserv.GenerateTest().subscribe((data: {}) => {
+      this.Test = data;
+    })
+  }
+  AnalyzeTest(testString = '', Userinput= ''){
+    
+  }
 }

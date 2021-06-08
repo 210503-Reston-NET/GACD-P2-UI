@@ -18,7 +18,13 @@
   <li *ngFor = "let i of User">  
     {{i.name}} ----- {{i.username}} ------ {{i.id}} ---- {{i.email}} 
   </li>  
-</ul>  
+</ul> 
+<div class ="form-group">
+<p id="quoteSpace" ></p>
+<form id="testUserEntry">
+  <textarea id="userInput"></textarea>
+</form>
+</div>
 
-
+<button (click)="GenerateTest()" class="btn btn-sucess">Start Test</button>
 <router-outlet></router-outlet>
