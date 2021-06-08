@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
 import {UserService} from 'src/Services/User.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email: "user1@gmail.com"},
@@ -19,7 +20,7 @@ export class AppComponent {
 
   User: any = [];
 
-  constructor(private userserv : UserService){
+  constructor(private userserv : UserService, public auth: AuthService){
   }
 
   ngOnInit(){
