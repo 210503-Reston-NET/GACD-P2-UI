@@ -7,8 +7,7 @@ export const environment = {
   production: false,
   auth: {
     domain: authSettings.domain,
-    clientId: authSettings.clientId,
-   
+    clientId: authSettings.clientId,   
     redirectUri: window.location.origin,
   },
 };

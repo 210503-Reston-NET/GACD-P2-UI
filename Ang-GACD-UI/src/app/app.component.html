@@ -1,24 +1,37 @@
-<app-nav-bar></app-nav-bar>
-<h1>{{title}}</h1>
+<div id="app" class="d-flex flex-column h-100">
+  <div class="container" *ngIf="auth.isLoading$ | async; else loaded">
+    <app-loading></app-loading>
+  </div>
 
-<!-- Testing Buttons -->
-<!-- <app-login-button></app-login-button>
-<app-signup-button></app-signup-button>
-<app-logout-button></app-logout-button>
-<app-authentication-button></app-authentication-button> -->
+  <ng-template #loaded>
+    <app-nav-bar></app-nav-bar>
+
+    <div class="container flex-grow-1">
+      <div class="mt-5">
+        <h1>{{title}}</h1>
+        <h2>User Detail</h2>  
+
+        <h1>Member Detail</h1>  
+        <ul>  
+          <li *ngFor = "let i of User">  
+            {{i.name}} ----- {{i.username}} ------ {{i.id}} ---- {{i.email}} 
+          </li>  
+        </ul>  
+      </div>
+      <div class="mt-5">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+   
+  </ng-template>
+</div>
+
+
+<!-- <app-profile *ngIf="auth.isAuthenticated$ | async"></app-profile> -->
+
+<!-- <app-nav-bar></app-nav-bar> -->
 
 
 
-
-
-<h2>User Detail</h2>  
-
-<h1>Member Detail</h1>  
-<ul>  
-  <li *ngFor = "let i of User">  
-    {{i.name}} ----- {{i.username}} ------ {{i.id}} ---- {{i.email}} 
-  </li>  
-</ul>  
-
-
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->

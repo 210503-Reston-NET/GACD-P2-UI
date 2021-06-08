@@ -12,17 +12,23 @@ import { SignupButtonComponent } from './components/nav-buttons/signup-button/si
 import { LogoutButtonComponent } from './components/nav-buttons/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/nav-buttons/authentication-button/authentication-button.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoadingComponent,
     LoginButtonComponent,
     SignupButtonComponent,
     LogoutButtonComponent,
     AuthenticationButtonComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     HttpClientModule,
