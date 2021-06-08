@@ -1,9 +1,9 @@
 {
     "User":[
-        { "id": 1, "name": "John Doe", "username":"user1", "Email": "user1@gmail.com"},
-        { "id": 2, "name": "Chris Hazel", "username":"user2", "Email": "user2@gmail.com"},
-        { "id": 3, "name": "Mike Angle", "username":"user3", "Email": "user3@gmail.com"},
-        { "id": 4, "name": "Hifumi Nozaki", "username":"user4", "Email": "user4@gmail.com"},
-        { "id": 5, "name": "Bernadette Bacara", "username":"user5", "Email": "user5@gmail.com"}
+        { "id": 1, "name": "John Doe", "username":"user1", "email": "user1@gmail.com"},
+        { "id": 2, "name": "Chris Hazel", "username":"user2", "email": "user2@gmail.com"},
+        { "id": 3, "name": "Mike Angle", "username":"user3", "email": "user3@gmail.com"},
+        { "id": 4, "name": "Hifumi Nozaki", "username":"user4", "email": "user4@gmail.com"},
+        { "id": 5, "name": "Bernadette Bacara", "username":"user5", "email": "user5@gmail.com"}
     ]
 }
