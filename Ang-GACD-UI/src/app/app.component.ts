@@ -17,11 +17,21 @@ const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email:
 export class AppComponent {
   title = 'Kwik-Koder';
 
+  User: any = [];
 
-  //User : Usermodel[] = this.userserv.GetAllMembers();
-  User = users;
+  constructor(private userserv : UserService){
+  }
+
+  ngOnInit(){
+    this.GenerateUsers();
+  }
+
+  GenerateUsers()
+  {
+    return this.userserv.GetAllMembers().subscribe((data: {}) => {
+      this.User = data;
+    })
+  }
+
   
-
-  //constructor(private userserv : UserService){
-  //}
 }
