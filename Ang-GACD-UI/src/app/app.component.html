@@ -18,6 +18,14 @@
           </li>  
         </ul>  
       </div>
+      <div class ="form-group">
+        <p id="quoteSpace" ></p>
+        <form id="testUserEntry">
+          <textarea id="userInput"></textarea>
+        </form>
+        </div>
+        
+        <button (click)="GenerateTest()" class="btn btn-sucess">Start Test</button>
       <div class="mt-5">
         <router-outlet></router-outlet>
       </div>
@@ -29,9 +37,3 @@
 
 
 <!-- <app-profile *ngIf="auth.isAuthenticated$ | async"></app-profile> -->
-
-<!-- <app-nav-bar></app-nav-bar> -->
-
-
-
-<!-- <router-outlet></router-outlet> -->

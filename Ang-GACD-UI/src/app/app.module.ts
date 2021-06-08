@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthModule } from '@auth0/auth0-angular';
+import { FormsModule } from '@angular/forms'
 import { environment as env } from '../environments/environment';
 import { LoginButtonComponent } from './components/nav-buttons/login-button/login-button.component';
 import { SignupButtonComponent } from './components/nav-buttons/signup-button/signup-button.component';
@@ -15,8 +16,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
-
-
 
 @NgModule({
   declarations: [
@@ -32,6 +31,7 @@ import { HomeComponent } from './pages/home/home.component';
   ],
   imports: [
     HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     AuthModule.forRoot({
