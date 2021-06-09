@@ -42,10 +42,22 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     AuthModule.forRoot({
       domain: env.auth.domain,
       clientId: env.auth.clientId,
+      audience: env.auth.audience,
+      scope: 'read:current_user',
       httpInterceptor:{
         allowedList:[
-          `${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
-          
+          //`${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}*`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            }
         ]
       }
     })
