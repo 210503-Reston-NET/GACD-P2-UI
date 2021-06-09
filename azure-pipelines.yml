@@ -1,19 +1,34 @@
 # Starter pipeline
+- task: NodeTool@0
+  inputs:
+    versionSpec: '6.x'
+    checkLatest: true
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'Ang-GACD-UI'
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    workingDir: '/Ang-GACD-UI'
+    publishRegistry: 'useFeed'
+    publishFeed: '2e9c78f3-fa36-4a27-a3da-e7e0f42282d5'
 
 trigger:
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: 'Ang-GACD-UI'
+    customCommand: 'install @angular-cli'
 - main
-
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: 'Ang-GACD-UI'
+    customCommand: 'run build'
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
