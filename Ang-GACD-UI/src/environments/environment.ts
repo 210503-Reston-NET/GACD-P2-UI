@@ -9,7 +9,11 @@ export const environment = {
     domain: authSettings.domain,
     clientId: authSettings.clientId,   
     redirectUri: window.location.origin,
+    audience: authSettings.audience
   },
+  dev: {
+    serverUrl: authSettings.serverUrl
+  }
 };
 
 /*
