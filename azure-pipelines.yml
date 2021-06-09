@@ -18,6 +18,6 @@ steps:
     npm install -g @angular/cli
     cd Ang-GACD-UI
     npm install
-    ng build --prod
+    ng build --prod="true"
   displayName: 'npm install and build'
 
