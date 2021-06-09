@@ -16,6 +16,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ApitestComponent } from './pages/apitest/apitest.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { HomeComponent } from './pages/home/home.component';
     AuthenticationButtonComponent,
     NavBarComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    ApitestComponent
   ],
   imports: [
     HttpClientModule,
@@ -36,10 +41,23 @@ import { HomeComponent } from './pages/home/home.component';
     AppRoutingModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
-      clientId: env.auth.clientId
+      clientId: env.auth.clientId,
+      httpInterceptor:{
+        allowedList:[
+          `${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
+          
+        ]
+      }
     })
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthHttpInterceptor,
+        multi: true,
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

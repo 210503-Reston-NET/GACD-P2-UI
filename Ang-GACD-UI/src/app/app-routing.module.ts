@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
-//import { ExternalApiComponent } from 'src/app/pages/external-api/external-api.component';
+import { ApitestComponent } from './pages/apitest/apitest.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
 
@@ -18,11 +18,11 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard],
   },
-  // {
-  //   path: 'external-api',
-  //   component: ExternalApiComponent,
-  //   canActivate: [AuthGuard],
-  // },
+  {
+    path: 'apitest',
+    component: ApitestComponent,
+    canActivate: [AuthGuard],
+  }
 
 ];
 
