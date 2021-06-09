@@ -22,7 +22,7 @@ export class ApitestComponent implements OnInit {
 
   callApi(): void {
     this.http
-    .get(`${env.dev.serverUrl}api/test/CodeSnippet/secret`, {responseType: 'text'})
+    .get(`${env.dev.serverUrl}api/test/CodeSnippet/Secret`, {responseType: 'text'})
     .subscribe((result) => {
       this.message = result;
     });
