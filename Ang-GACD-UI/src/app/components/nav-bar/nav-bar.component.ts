@@ -7,7 +7,8 @@ import { AppComponent } from 'src/app/app.component';
   ]
 })
 export class NavBarComponent implements OnInit {
-
+  loadingImg =
+  'https://api.freelogodesign.org/files/4981cd4ed1774227824e712939d53c78/thumb/logo_200x200.png?v=637588683320000000';
   constructor() {    
   }
   
