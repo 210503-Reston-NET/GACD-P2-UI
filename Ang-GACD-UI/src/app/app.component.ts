@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserService } from 'src/Services/User.service';
-import { TestService } from 'src/Services/Test.Service'
+import { TestService } from 'src/Services/Test.Service';
 
 
 @Component({
