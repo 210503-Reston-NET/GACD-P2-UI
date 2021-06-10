@@ -10,7 +10,7 @@ export class UserService {
   private testURL = 'http://localhost:3000/User'
 
   constructor(public http : HttpClient) { 
-   
+
   }
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,8 +18,18 @@ export class UserService {
     })
   }
 
-GetAllMembers(): Observable<Usermodel>{
-  return this.http.get<Usermodel>(this.testURL).pipe();
+GetAllMembers(): Promise<Usermodel>{
+  return this.http.get<Usermodel>(this.testURL).toPromise();
+  //return fetch(this.testURL)
+}
+
+GetMember(id: number): Promise<Usermodel>{
+  return this.http.get<Usermodel>(this.testURL + id).toPromise();
+}
+CreateUser(newuser: Usermodel): Observable<Usermodel>{
+  return this.http.post<Usermodel>(this.testURL,
+    JSON.stringify(newuser), 
+    this.httpOptions).pipe();
 }
 
 }

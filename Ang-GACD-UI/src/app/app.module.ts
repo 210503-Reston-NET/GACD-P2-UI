@@ -6,34 +6,70 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthModule } from '@auth0/auth0-angular';
+import { FormsModule } from '@angular/forms'
 import { environment as env } from '../environments/environment';
 import { LoginButtonComponent } from './components/nav-buttons/login-button/login-button.component';
 import { SignupButtonComponent } from './components/nav-buttons/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/nav-buttons/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/nav-buttons/authentication-button/authentication-button.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ApitestComponent } from './pages/apitest/apitest.component';
 
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoadingComponent,
     LoginButtonComponent,
     SignupButtonComponent,
     LogoutButtonComponent,
     AuthenticationButtonComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfileComponent,
+    HomeComponent,
+    ApitestComponent
   ],
   imports: [
     HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
-      clientId: env.auth.clientId
+      clientId: env.auth.clientId,
+      audience: env.auth.audience,
+      scope: 'read:current_user',
+      httpInterceptor:{
+        allowedList:[
+          //`${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}*`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            }
+        ]
+      }
     })
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthHttpInterceptor,
+        multi: true,
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

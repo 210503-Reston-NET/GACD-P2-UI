@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
-import {UserService} from 'src/Services/User.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { UserService } from 'src/Services/User.service';
+import { TestService } from 'src/Services/Test.Service'
 
-
-const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email: "user1@gmail.com"},
-{ id: 2, name: "Chris Hazel", username:"user2", email: "user2@gmail.com"},
-{ id: 3, name: "Mike Angle", username:"user3", email: "user3@gmail.com"},
-{ id: 4, name: "Hifumi Nozaki", username:"user4", email: "user4@gmail.com"},
-{ id: 5, name: "Bernadette Bacara", username:"user5", email: "user5@gmail.com"}]
 
 @Component({
   selector: 'app-root',
@@ -15,23 +11,40 @@ const users : Usermodel[] = [{ id: 1, name: "John Doe", username:"user1", email:
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  showMenu = false;
   title = 'Kwik-Koder';
+  darkModeActive: boolean;
 
   User: any = [];
+  Test: any;
+  profileJson: string = null;
 
-  constructor(private userserv : UserService){
+  constructor(private userserv : UserService, public auth: AuthService, private testserv : TestService){
   }
 
   ngOnInit(){
-    this.GenerateUsers();
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+    );
   }
+
+  displayMenu(){
+    this.showMenu = !this.showMenu;
+  }
+
 
   GenerateUsers()
   {
-    return this.userserv.GetAllMembers().subscribe((data: {}) => {
-      this.User = data;
-    })
+    return this.userserv.GetAllMembers().then(result => this.User = result)
   }
 
-  
+  GenerateTest()
+  {
+    return this.testserv.GenerateTest().subscribe((data: {}) => {
+      this.Test = data;
+    })
+  }
+  AnalyzeTest(testString = '', Userinput= ''){
+    
+  }
 }
