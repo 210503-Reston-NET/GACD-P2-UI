@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
-
-interface Message {
-   message: string;
-}
+import {RestService} from '../../../Services/rest.service';
 
 @Component({
   selector: 'app-apitest',
@@ -15,32 +12,20 @@ export class ApitestComponent implements OnInit {
 
   message: string = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private api: RestService) { }
 
   ngOnInit(): void {
   }
 
   callApi(): void {
-    this.http
-    .get(`${env.dev.serverUrl}api/test/CodeSnippet/Secret`, {responseType: 'text'})
-    .subscribe((result) => {
-      this.message = result;
-    });
+      this.api.testcallApi().then((str) => {this.message = str});
   }
 
   callApiPublic(): void {
-    this.http
-      .get(`${env.dev.serverUrl}api/test/CodeSnippet`, {responseType: 'text'})
-      .subscribe((result) => {
-        this.message = result;
-      });
+    this.api.testcallApiPublic().then((str) => {this.message = str});
   }
 
   callApiGetUserInfo(): void {
-    this.http
-      .get(`${env.dev.serverUrl}api/test/Test/Secret`, {responseType: 'text'})
-      .subscribe((result) => {
-        this.message = result;
-      });
+    this.api.testcallApiGetUserInfo().then((str) => {this.message = str});
   }
 }
