@@ -20,6 +20,8 @@ import { ApitestComponent } from './pages/apitest/apitest.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { TestComponent } from './pages/test/test.component';
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     NavBarComponent,
     ProfileComponent,
     HomeComponent,
-    ApitestComponent
+    ApitestComponent,
+    TestComponent,
+    LeaderboardComponent
   ],
   imports: [
     HttpClientModule,

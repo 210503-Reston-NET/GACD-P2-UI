@@ -226,6 +226,9 @@
     right: 47%;
     height: 2rem;
 }
+.menu_list li a{
+    cursor: pointer;
+}
 
 /*Body*/
 .main-container_bg {

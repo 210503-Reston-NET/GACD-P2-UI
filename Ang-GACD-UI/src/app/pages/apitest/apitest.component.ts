@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import {RestService} from '../../../Services/rest.service';
+import { TestMaterial } from 'src/Models/TestMaterial';
+
 
 @Component({
   selector: 'app-apitest',
@@ -27,5 +29,13 @@ export class ApitestComponent implements OnInit {
 
   callApiGetUserInfo(): void {
     this.api.testcallApiGetUserInfo().then((str) => {this.message = str});
+  }
+
+  testEndpoint(): void{
+    let thing: TestMaterial;
+   // this.api.getTestContentByCatagoryId()
+   this.api.getTestContentByCatagoryId(23).then( (str)=> {thing = str});
+   console.log(thing);
+
   }
 }
