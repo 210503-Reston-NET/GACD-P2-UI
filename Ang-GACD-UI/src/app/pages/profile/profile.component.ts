@@ -6,7 +6,7 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  username: string = '';
   profileJson: string = null;
   
   constructor(public auth: AuthService) {}
@@ -15,6 +15,13 @@ export class ProfileComponent implements OnInit {
     this.auth.user$.subscribe(
       (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
     );
+    this.auth.idTokenClaims$.subscribe(
+      claims => (console.log(claims))
+    );
+  }
+
+  updateUserName():void {
+    
   }
 
 }

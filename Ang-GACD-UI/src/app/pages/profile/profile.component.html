@@ -10,7 +10,9 @@
       </div>
       <div class="col-md text-center text-md-left">
         <ul>
-          <li>Username: <span>{{ user.name }}</span></li>
+          <li>name: <span>{{ user.name }}</span></li>
+          <li>nickname: <span> {{user.nickname}}</span></li>
+          <li><input type="text" name="NewUsername" [(ngModel)]="username"><button class="btn btn-default" (click)="updateUserName()">Update</button></li>
           <li>Email: <span>{{ user.email }}</span>
         </ul>
         

@@ -35,4 +35,12 @@ export class ApitestComponent implements OnInit {
         this.message = result;
       });
   }
+
+  callApiGetUserInfo(): void {
+    this.http
+      .get(`${env.dev.serverUrl}api/test/Test/Secret`, {responseType: 'text'})
+      .subscribe((result) => {
+        this.message = result;
+      });
+  }
 }
