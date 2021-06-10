@@ -11,23 +11,31 @@ import { TestService } from 'src/Services/Test.Service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  showMenu = false;
   title = 'Kwik-Koder';
+  darkModeActive: boolean;
 
   User: any = [];
   Test: any;
+  profileJson: string = null;
 
   constructor(private userserv : UserService, public auth: AuthService, private testserv : TestService){
   }
 
   ngOnInit(){
-    this.GenerateUsers();
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+    );
   }
+
+  displayMenu(){
+    this.showMenu = !this.showMenu;
+  }
+
 
   GenerateUsers()
   {
-    return this.userserv.GetAllMembers().subscribe((data: {}) => {
-      this.User = data;
-    })
+    return this.userserv.GetAllMembers().then(result => this.User = result)
   }
 
   GenerateTest()
