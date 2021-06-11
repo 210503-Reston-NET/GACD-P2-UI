@@ -1,12 +1,14 @@
 <div>
     <table class = "table">
         <thead>
+            <th>Ranking</th>
             <th>Username</th>
             <th>Accuracy</th>
             <th>WPM</th>
         </thead>
         <tbody>
             <tr *ngFor="let LBModel of LBModels;">
+                <td>{{LBModel.ranking}}</td>
                 <td>{{LBModel.userName}}</td>
                 <td>{{LBModel.acc}}</td>
                 <td>{{LBModel.wpm}}</td>
