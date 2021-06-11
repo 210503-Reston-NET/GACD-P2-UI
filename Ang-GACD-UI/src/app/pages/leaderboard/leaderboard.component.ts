@@ -10,6 +10,7 @@ import { RestService } from 'src/Services/rest.service';
 export class LeaderboardComponent implements OnInit {
 
   LBModels: LBModel[]
+  FilteredLBModels: LBModel []
   catId : number
   constructor(private api: RestService) { 
     //this.catId = id;
@@ -21,6 +22,9 @@ export class LeaderboardComponent implements OnInit {
   GetBestUsers(id:number): void{
     this.api.getLeaderBoardByCatagoryId(id).then(res => this.LBModels = res);  
   }
-  
+  public SearchLetters(letterString:string) :void{
+    if(letterString) this.FilteredLBModels = this.LBModels.filter((LBModel)=>LBModel.userName.includes(letterString))
+    else this.FilteredLBModels = this.LBModels
+  }
 
 }
