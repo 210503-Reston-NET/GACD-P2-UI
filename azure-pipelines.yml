@@ -34,5 +34,5 @@ steps:
     WebAppName: 'kwikkoder'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|14-lts'
-    StartupCommand: 'node/home/site/wwwroot/server'
+    StartupCommand: 'pm2 serve /home/site/wwwroot/dist/Ang-GACD-UI --no-daemon --spa'
 
