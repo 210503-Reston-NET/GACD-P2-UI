@@ -4,6 +4,13 @@ import { State } from 'src/Models/state';
 import { TestMaterial } from 'src/Models/TestMaterial';
 import { RestService } from 'src/Services/rest.service';
 
+import { Usermodel } from 'src/Models/UserModel';
+import {UserService} from 'src/Services/User.service';
+import { AppComponent } from 'src/app/app.component';
+// import { NodeJS } from '@types/node';
+
+
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -13,100 +20,182 @@ export class TestComponent implements OnInit {
 
   constructor(public auth: AuthService, private api: RestService) { }
 
-  ngOnInit(): void {
-    this.newTest();
-    // this.state.words = this.state.typeTest.split(' ')
-    // this.api.getTestContentByCatagoryId(-1).then(
-    //   (obj)=> {this.testmat = obj
-    //   this.state.words = this.testmat.content.split(' ');
-    // })
-
+  ngOnInit(): void{
+    //place for category
+    this.testString = "Hello world!"
+    let testCategory = "Text";
   }
 
-  newTest(): void{
-    this.state.wordsPerMinute = null;
-    this.state.words =[]
-    this.state.enteredText= ''
-    this.state.correctCount= 0
-    this.state.started= false
-    this.state.startTime= null
-    this.state.wordsPerMinute = null
-
-    this.api.getTestContentByCatagoryId(-1).then(
-      (obj)=> {this.testmat = obj
-      this.state.words = this.testmat.content.split(' ');
-    })
-
-  }
-
-  testmat: TestMaterial = null;
-
-  state: State = {
-    words: [],
-    enteredText: '',
-    correctCount: 0,
-    started: false,
-    startTime: null,
-    wordsPerMinute: null
-  } 
-
-  inputfield: string;
+  // Time Limit
+ 
+  // selecting required elements
+  // timer_text = document.getElementById(".timerValue") as HTMLDivElement;
+  // error_text = document.getElementById(".errorsValue") as HTMLDivElement;
+  // charactersTyped_text = document.getElementById("charactersTypedValue") as HTMLDivElement; 
+  //quote_text = document.getElementById("snippet_area") as HTMLDivElement;
+  input_area = document.getElementById(".entry_area") as HTMLTextAreaElement;
+  //let restart_btn = document.getElementById(".restart_btn") as HTMLButtonElement;
+  //let chracters_group = document.getElementById(".typeCount") as HTMLAnchorElement;
+  //let erraor_group = document.getElementById(".error") as HTMLAnchorElement;
+  startTime: number;
+  timeTaken: number;
+  testString:string;
+  timeLimit: number = 0;
+  timeRemaining: number = 0;
+  timeElapsed: number = 0;
+  total_errors: number = 0;
+  errors: number = 0;
+  characterTyped: number = 0;
+  current_quote: string = "";
+  quoteNo: number= 0;
+  currentInput: string;
+  started: boolean = false;
   
-  wordsPerMinute (charsTyped: number, ms: number): number {
-    return Math.floor((charsTyped / 5) / (ms / 60000))
-  }
-  
-  onWordChange(): void {
-    let e = this.inputfield
-    if (!this.state.started) {
-      this.state.started= true
-      this.state.startTime = new Date() 
-    }
-    console.log(e)
-    const enteredText = e.trim()
-    this.state.enteredText = enteredText
-    if (enteredText === this.state.words[0]) {
-      this.state.correctCount = this.state.correctCount + 1
-      this.state.enteredText = '';
-      this.state.words = this.state.words.slice(1)
-      this.checkIfFinished()
-    }
-  }
-  
-    
 
-  checkIfFinished(): void {
-    console.log(this.state.words.length)
-    if (!this.state.words.length) {
-      if (this.state.startTime) {
-        const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
-        const wpm = this.wordsPerMinute(this.testmat.length, timeMillis)
-        this.state.wordsPerMinute = wpm;
+  ResetGame(): void{
+      this.timeElapsed = 0;
+      this.errors = 0;
+      this.characterTyped = 0;
+      this.testString = "";
+  }
+
+
+  ProcessText(): void{
+      let typedChars :string[]  = this.currentInput.split("");
+      let quote:String = this.testString;
+      let charsToType= quote.split("");
+      if(!this.started){
+        //console.log(this.timeRemaining)
+        this.started = true;
+        this.errors = 0;
+        this.startTime = new Date().getTime();       
       }
-    }
+      charsToType.forEach((char, index) => {
+        let typedChar = typedChars[index]       
+        if (typedChar == null) {
+          //set character color to normal character color from stylesheet
+        } else if (typedChar != char) {
+          //set character color to red "#8B0000";
+          this.errors++;
+        }
+      });
+      this.characterTyped = typedChars.length;
+      this.total_errors = this.errors;
+      if(this.characterTyped >= charsToType.length)
+      {  
+        this.timeTaken = (new Date().getTime() - this.startTime);
+        let seconds:number = this.timeTaken/1000;
+        let words = this.characterTyped / 5;
+        let wpm = words/seconds;
+      }
   }
-
-  
+  startGame() { 
+      
+    this.resetValues();    
+  }
+    
+  resetValues() {
+    this.timeRemaining = this.timeLimit;
+    this.timeElapsed = 0;
+    this.errors = 0;
+    this.total_errors = 0;
+    this.characterTyped = 0;
+        //reset the value of the input area
+    //reset the value of the quote area
+  }
 
 }
 
 
+  // FinishGame(): void{
+  //   clearInterval(this.timer)
+  //   this.input_area.readOnly = true
+  // }
+
+  // RunTimer(): void{
+  //   console.log(this.timeRemaining)
+  //   if(this.timeRemaining > 0){
+  //     this.timeRemaining--;
+  //     this.timeElapsed++;
+  //      // this.timeRemaining
+  //   }else{
+  //     this.FinishGame();
+  //   }
+  // }
 
 
 
 
+  //Garretts code
+  // ngOnInit(): void {
+  //   this.newTest();
+  //   // this.state.words = this.state.typeTest.split(' ')
+  //   // this.api.getTestContentByCatagoryId(-1).then(
+  //   //   (obj)=> {this.testmat = obj
+  //   //   this.state.words = this.testmat.content.split(' ');
+  //   // })
 
-  // render() {
-  //   return (
-  //     <div className='App'>
-  //       <h1>{this.state.wordsPerMinute ? `${this.state.wordsPerMinute} WPM`
-  //                                      : 'Test Your Typing Speed, Scrub!'}</h1>
-  //       <h1>{this.state.correctCount}</h1>
-  //       <h3>Type the following:</h3>
-  //       <h6>{this.state.words.map(word => word === this.state.words[0] ? 
-  //             <em className='current-word'>{word} </em> : word + ' ')}</h6>
-  //       <input value={this.state.enteredText} 
-  //              onChange={this.onWordChange}/>
-  //     </div>
-  //   )
+  // }
+
+  // newTest(): void{
+  //   this.state.wordsPerMinute = null;
+  //   this.state.words =[]
+  //   this.state.enteredText= ''
+  //   this.state.correctCount= 0
+  //   this.state.started= false
+  //   this.state.startTime= null
+  //   this.state.wordsPerMinute = null
+
+  //   this.api.getTestContentByCatagoryId(-1).then(
+  //     (obj)=> {this.testmat = obj
+  //     this.state.words = this.testmat.content.split(' ');
+  //   })
+
+  // }
+
+  // testmat: TestMaterial = null;
+
+  // state: State = {
+  //   words: [],
+  //   enteredText: '',
+  //   correctCount: 0,
+  //   started: false,
+  //   startTime: null,
+  //   wordsPerMinute: null
+  // } 
+
+  // inputfield: string;
+  
+  // wordsPerMinute (charsTyped: number, ms: number): number {
+  //   return Math.floor((charsTyped / 5) / (ms / 60000))
+  // }
+  
+  // onWordChange(): void {
+  //   let e = this.inputfield
+  //   if (!this.state.started) {
+  //     this.state.started= true
+  //     this.state.startTime = new Date() 
+  //   }
+  //   console.log(e)
+  //   const enteredText = e.trim()
+  //   this.state.enteredText = enteredText
+  //   if (enteredText === this.state.words[0]) {
+  //     this.state.correctCount = this.state.correctCount + 1
+  //     this.state.enteredText = '';
+  //     this.state.words = this.state.words.slice(1)
+  //     this.checkIfFinished()
+  //   }
+  // }
+  
+    
+
+  // checkIfFinished(): void {
+  //   console.log(this.state.words.length)
+  //   if (!this.state.words.length) {
+  //     if (this.state.startTime) {
+  //       const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
+  //       const wpm = this.wordsPerMinute(this.testmat.length, timeMillis)
+  //       this.state.wordsPerMinute = wpm;
+  //     }
+  //   }
   // }
