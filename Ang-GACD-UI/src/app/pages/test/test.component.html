@@ -1,14 +1,30 @@
-<!-- <div class="test_info">
+< <div class="test_info">
+    <span  id="categoryGroup">
+        <h6 class=test_category id="categoryLabel" name ="categoryLabel">Category</h6>
+        <h6 class=test_category id="categoryValue" name ="categoryValue"></h6>  
+    </span>
+    <span  id="charactersTypedGroup">
+        <h6 class=charactersTyped id="charactersTypedLabel" name ="charactersTypedLabel">Characters Typed</h6>
+        <h6 class=charactersTyped id="charactersTypedValue" name ="charactersTypedValue"></h6>  
+    </span>
+    <span  id="errorGroup">
+        <h6 class=errors id="errorsLabel" name ="errorsLabel">Errors</h6>
+        <h6 class=errors id="errorsValue" name ="errorsValue"></h6>  
+    </span>
+    <span  id="timerGroup">
+        <h6 class=timer id="timerLabel" name ="timerLabel">Timer</h6>
+        <h6 class=timer id="timerValue" name ="timerValue"></h6>  
+    </span>
     <a class=test_category id="category" name ="category">category</a>
     <a class=typed_sect id="type_count" name ="type_count">category</a>
     <a class=error_sect id="error" name ="error">category</a>
     <a class=time_sect id="time" name ="time">category</a>
 </div>
 <div class="test_site">
-    <textarea id="snippet_area" name="display" placeholder="Snipets go here"></textarea>
-    <textarea id="entry_area" name="input" placeholder="User entry goes here"></textarea>
+    <textarea id="snippet_area" name="display" placeholder="Snipets go here" rows="10"></textarea>
+    <textarea id="entry_area" name="input" placeholder="User entry goes here" rows="10"></textarea>
 
-</div> -->
+</div>
 <div>
     <h1>Author: {{ testmat.author }}</h1>
     <h1 *ngIf="testmat">{{ testmat.content }}</h1>
