@@ -7,6 +7,7 @@ import { ApitestComponent } from './pages/apitest/apitest.component';
 import { TestComponent } from 'src/app/pages/test/test.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
     path: 'test',
     component: TestComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent
   }
 ];
 
