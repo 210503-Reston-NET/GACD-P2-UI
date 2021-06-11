@@ -1,18 +1,33 @@
-<!-- <div class="test_info">
-    <a class=test_category id="category" name ="category">category</a>
+<div class="test_info">
+    <span  id="categoryGroup">
+        <div class=test_category id="categoryLabel" name ="categoryLabel">Category</div>
+        <div class=test_category id="categoryValue" name ="categoryValue"></div>  
+    </span>
+    <span  id="charactersTypedGroup">
+        <div class=charactersTyped id="charactersTypedLabel" name ="charactersTypedLabel">Characters Typed</div>
+        <div class=charactersTyped id="charactersTypedValue" name ="charactersTypedValue"></div>  
+    </span>
+    <span  id="errorGroup">
+        <div class=errors id="errorsLabel" name ="errorsLabel">Errors</div>
+        <div class="errors" id="errorsValue" name ="errorsValue">{{ state.errors }}</div>  
+    </span>
+    <span  id="timerGroup">
+        <div class=timer id="timerLabel" name ="timerLabel">Timer</div>
+        <div class=timer id="timerValue" name ="timerValue"></div>  
+    </span>
+    <!--a class=test_category id="category" name ="category">category</a>
     <a class=typed_sect id="type_count" name ="type_count">category</a>
     <a class=error_sect id="error" name ="error">category</a>
-    <a class=time_sect id="time" name ="time">category</a>
+    <a class=time_sect id="time" name ="time">category</a>-->
 </div>
 <div class="test_site">
-    <textarea id="snippet_area" name="display" placeholder="Snipets go here"></textarea>
-    <textarea id="entry_area" name="input" placeholder="User entry goes here"></textarea>
-
-</div> -->
-<div>
+    <textarea id="snippet_area" value ="{{state.words}}" name="display" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
+    <textarea id=" " name="input" [(ngModel)]="state.enteredText"  (ngModelChange)="ProcessText()" placeholder="User entry goes here" rows="10"></textarea>
+</div>
+<!-- <div>
     <h1>Author: {{ testmat.author }}</h1>
     <h1 *ngIf="testmat">{{ testmat.content }}</h1>
     <h1 *ngIf="state.wordsPerMinute">{{ state.wordsPerMinute }}</h1>
     <input *ngIf="testmat" [(ngModel)]="inputfield" value={{state.enteredText}} (ngModelChange)="onWordChange()"/>
     <button *ngIf="testmat" (click)="newTest()" >New Test</button>
-</div>
+</div> -->
