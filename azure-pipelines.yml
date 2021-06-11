@@ -20,6 +20,8 @@ steps:
     cd Ang-GACD-UI
     npm install
     ng build --prod="true"
+    ls ./dist
+    zip -r dist/app.zip dist/app
   displayName: 'npm install and build'
 
 #Test
