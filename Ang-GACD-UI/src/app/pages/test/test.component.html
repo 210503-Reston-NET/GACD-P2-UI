@@ -1,4 +1,4 @@
-< <div class="test_info">
+<div class="test_info">
     <span  id="categoryGroup">
         <h6 class=test_category id="categoryLabel" name ="categoryLabel">Category</h6>
         <h6 class=test_category id="categoryValue" name ="categoryValue"></h6>  
@@ -20,15 +20,22 @@
     <a class=error_sect id="error" name ="error">category</a>
     <a class=time_sect id="time" name ="time">category</a>
 </div>
-<div class="test_site">
-    <textarea id="snippet_area" name="display" placeholder="Snipets go here" rows="10"></textarea>
-    <textarea id="entry_area" name="input" placeholder="User entry goes here" rows="10"></textarea>
-
+<div class="container"> 
+    <div class="row">
+        <div class="test_site col-md-6">
+            <textarea id="snippet_area" name="display" placeholder="{{ testString }}" rows="10"></textarea>
+        </div>
+        <div class="test_site col-md-6">
+            <textarea id="entry_area" name="input" placeholder="User entry goes here" rows="10"></textarea>
+        </div>
+    </div>
 </div>
-<div>
+
+
+<!-- <div>
     <h1>Author: {{ testmat.author }}</h1>
     <h1 *ngIf="testmat">{{ testmat.content }}</h1>
     <h1 *ngIf="state.wordsPerMinute">{{ state.wordsPerMinute }}</h1>
     <input *ngIf="testmat" [(ngModel)]="inputfield" value={{state.enteredText}} (ngModelChange)="onWordChange()"/>
     <button *ngIf="testmat" (click)="newTest()" >New Test</button>
-</div>
+</div> -->
