@@ -1,4 +1,5 @@
 <div>
+    <h3>Search For User: <input [(ngModel)]="text" (input)="SearchLetters($event)" placeholder="Enter Username Here"></h3>
     <table class = "table">
         <thead>
             <th>Ranking</th>
@@ -7,7 +8,7 @@
             <th>WPM</th>
         </thead>
         <tbody>
-            <tr *ngFor="let LBModel of LBModels;">
+            <tr *ngFor="let LBModel of FilteredLBModels;">
                 <td>{{LBModel.ranking}}</td>
                 <td>{{LBModel.userName}}</td>
                 <td>{{LBModel.acc}}</td>
