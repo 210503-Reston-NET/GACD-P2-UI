@@ -1,0 +1,17 @@
+.test_info{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+.test_site{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    position: relative;
+    left: 35%;
+    
+}
+.test_site textarea{
+    width: 600px;
+    height: 400px;
+
+}
+

@@ -21,6 +21,10 @@
       <button (click)="callApiPublic()" type="button" class="btn btn-primary">
         Get Public Message
       </button>
+      <input type="number" name="langid" [(ngModel)]="languageId">
+      <button (click)="testEndpoint(languageId)" type="button" class="btn btn-primary">
+        Test Getting code snippet
+      </button>
     </div>
   
     <div *ngIf="message" class="mt-5">
@@ -33,4 +37,18 @@
         </div>
       </div>
     </div>
+
+
+    <div *ngIf="testmat" class="mt-5">
+      <h6 class="muted">Result: </h6>
+      <h6 class="muted">language: {{testmat.catagoryId}} </h6>
+      <div class="container-fluid">
+        <div class="row">
+            <pre class="col-12 text-light bg-dark p-4">{{ testmat.content }}</pre>          
+        </div>
+      </div>
+    </div>
   </div>
+
+
+  

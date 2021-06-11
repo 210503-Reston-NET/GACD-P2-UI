@@ -4,8 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 @Component({
   selector: 'app-authentication-button',
   templateUrl: './authentication-button.component.html',
-  styles: [
-  ]
+  styleUrls: [ './authentication-button.component.css']
 })
 export class AuthenticationButtonComponent implements OnInit {
 

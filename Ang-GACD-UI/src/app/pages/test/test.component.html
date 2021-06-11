@@ -1,0 +1,18 @@
+<!-- <div class="test_info">
+    <a class=test_category id="category" name ="category">category</a>
+    <a class=typed_sect id="type_count" name ="type_count">category</a>
+    <a class=error_sect id="error" name ="error">category</a>
+    <a class=time_sect id="time" name ="time">category</a>
+</div>
+<div class="test_site">
+    <textarea id="snippet_area" name="display" placeholder="Snipets go here"></textarea>
+    <textarea id="entry_area" name="input" placeholder="User entry goes here"></textarea>
+
+</div> -->
+<div>
+    <h1>Author: {{ testmat.author }}</h1>
+    <h1 *ngIf="testmat">{{ testmat.content }}</h1>
+    <h1 *ngIf="state.wordsPerMinute">{{ state.wordsPerMinute }}</h1>
+    <input *ngIf="testmat" [(ngModel)]="inputfield" value={{state.enteredText}} (ngModelChange)="onWordChange()"/>
+    <button *ngIf="testmat" (click)="newTest()" >New Test</button>
+</div>
