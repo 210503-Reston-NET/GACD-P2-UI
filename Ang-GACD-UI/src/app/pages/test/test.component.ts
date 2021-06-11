@@ -7,6 +7,7 @@ import { RestService } from 'src/Services/rest.service';
 import { Usermodel } from 'src/Models/UserModel';
 import {UserService} from 'src/Services/User.service';
 import { AppComponent } from 'src/app/app.component';
+import { TestModel } from 'src/Models/TestModel';
 // import { NodeJS } from '@types/node';
 
 
@@ -22,52 +23,46 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void{
     //place for category
-    this.testString = "Hello world!"
-    let testCategory = "Text";
+    this.setupGame(-1);
+    this.state.words = "Hello world!"
   }
 
-  // Time Limit
- 
-  // selecting required elements
-  // timer_text = document.getElementById(".timerValue") as HTMLDivElement;
-  // error_text = document.getElementById(".errorsValue") as HTMLDivElement;
-  // charactersTyped_text = document.getElementById("charactersTypedValue") as HTMLDivElement; 
-  //quote_text = document.getElementById("snippet_area") as HTMLDivElement;
-  input_area = document.getElementById(".entry_area") as HTMLTextAreaElement;
-  //let restart_btn = document.getElementById(".restart_btn") as HTMLButtonElement;
-  //let chracters_group = document.getElementById(".typeCount") as HTMLAnchorElement;
-  //let erraor_group = document.getElementById(".error") as HTMLAnchorElement;
+  testmat: TestMaterial = null;
+
+  state: State = {
+    words: '',
+    enteredText: '',
+    errors: 0,
+    started: false,
+    startTime: null,
+    timeTaken: 0,
+  } 
+
+
   startTime: number;
   timeTaken: number;
-  testString:string;
-  timeLimit: number = 0;
-  timeRemaining: number = 0;
-  timeElapsed: number = 0;
-  total_errors: number = 0;
-  errors: number = 0;
+
+  
   characterTyped: number = 0;
   current_quote: string = "";
   quoteNo: number= 0;
-  currentInput: string;
-  started: boolean = false;
+  wpm: number;
   
 
   ResetGame(): void{
-      this.timeElapsed = 0;
-      this.errors = 0;
-      this.characterTyped = 0;
-      this.testString = "";
+
+      this.characterTyped = 0;     
   }
 
 
   ProcessText(): void{
-      let typedChars :string[]  = this.currentInput.split("");
-      let quote:String = this.testString;
+      let typedChars :string[]  = this.state.enteredText.split("");
+      let quote:String = this.state.words;
       let charsToType= quote.split("");
-      if(!this.started){
+      if(!this.state.started){
         //console.log(this.timeRemaining)
-        this.started = true;
-        this.errors = 0;
+        this.state.started = true;
+        this.state.errors = 0;
         this.startTime = new Date().getTime();       
       }
       charsToType.forEach((char, index) => {
@@ -76,52 +71,53 @@ export class TestComponent implements OnInit {
           //set character color to normal character color from stylesheet
         } else if (typedChar != char) {
           //set character color to red "#8B0000";
-          this.errors++;
+          this.state.errors++;
         }
       });
       this.characterTyped = typedChars.length;
-      this.total_errors = this.errors;
       if(this.characterTyped >= charsToType.length)
       {  
         this.timeTaken = (new Date().getTime() - this.startTime);
         let seconds:number = this.timeTaken/1000;
-        let words = this.characterTyped / 5;
-        let wpm = words/seconds;
+        let totalWords = this.characterTyped / 5;
+        let wpm = totalWords/seconds;
+        
       }
   }
-  startGame() { 
-      
-    this.resetValues();    
+  setupGame(id: number) {
+    this.state = {
+      words: '',
+      enteredText: '',
+      errors: 0,
+      started: false,
+      startTime: null,
+      timeTaken: 0,     
+    }
+    //get quote/snippet
+    this.api.getTestContentByCatagoryId(id).then((obj)=> {this.testmat = obj; this.state.words = this.testmat.content})
+    //reset values:
+    
   }
     
-  resetValues() {
-    this.timeRemaining = this.timeLimit;
-    this.timeElapsed = 0;
-    this.errors = 0;
-    this.total_errors = 0;
-    this.characterTyped = 0;
-        //reset the value of the input area
-    //reset the value of the quote area
+
+
+  finishTest() {
+
+  }
+
+  RecordResults() {
+    let results: TestModel;
+
+    results.numberoferrors = 0;
+    results.numberofcharacters =  this.state.errors
+    results.timetakenms = this.state.timeTaken;
+    results.date = new Date()
+  
+    this.api.postTestResults(results)
   }
 
 }
 
-
-  // FinishGame(): void{
-  //   clearInterval(this.timer)
-  //   this.input_area.readOnly = true
-  // }
-
-  // RunTimer(): void{
-  //   console.log(this.timeRemaining)
-  //   if(this.timeRemaining > 0){
-  //     this.timeRemaining--;
-  //     this.timeElapsed++;
-  //      // this.timeRemaining
-  //   }else{
-  //     this.FinishGame();
-  //   }
-  // }
 
 
 

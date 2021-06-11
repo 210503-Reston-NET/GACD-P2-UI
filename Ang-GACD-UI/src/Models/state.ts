@@ -1,8 +1,8 @@
 export interface State {
-    words: Array<string>;
+    words: string;
     enteredText: string;
-    correctCount: number;
+    errors: number;
     started: boolean;
     startTime: Date;
-    wordsPerMinute: number;
+    timeTaken: number;
   }
