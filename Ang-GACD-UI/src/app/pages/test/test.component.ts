@@ -152,6 +152,8 @@ export class TestComponent implements OnInit {
           this.state.letterPosition = this.state.wordarray[this.state.wordPosition].length
         }
       }
+    }else{
+
     }
   } 
     
