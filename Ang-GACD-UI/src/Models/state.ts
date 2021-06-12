@@ -1,6 +1,6 @@
 export interface State {
     words: string;
-    wordarray: Array<string[]>;
+    wordarray: string[];
     typedarray: Array<string[]>;
     enteredText: string;
     errors: number;
@@ -9,6 +9,6 @@ export interface State {
     startTime: Date;
     timeTaken: number;
     letterPosition: number;
-    wordPosition: number;
+    //wordPosition: number;
     correctchars: number;
   }
