@@ -8,6 +8,7 @@ import { TestComponent } from 'src/app/pages/test/test.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
+import { ViewCompetitionsComponent } from './pages/view-competitions/view-competitions.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'leaderboard',
     component: LeaderboardComponent
+  },
+  {
+    path: 'competitions',
+    component: ViewCompetitionsComponent
   }
 ];
 
