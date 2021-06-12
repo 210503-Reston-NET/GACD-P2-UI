@@ -1,0 +1,19 @@
+<div class = "container">
+    <table class = "table">
+        <thead>
+            <th>Category</th>
+            <th>Participants</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let CompModel of CompModels;">
+                <td>{{CompModel.category}}</td>
+                <td>{{CompModel.participants}}</td>
+                <td>{{LBModel.startDate}}</td>
+                <td>{{LBModel.endDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
