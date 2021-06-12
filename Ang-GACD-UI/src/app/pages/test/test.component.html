@@ -1,7 +1,7 @@
 <div class="test_info">
     <span  id="categoryGroup">
         <div class=test_category id="categoryLabel" name ="categoryLabel">Category</div>
-        <div class=test_category id="categoryValue" name ="categoryValue"></div>  
+        <div class=test_category id="categoryValue" name ="categoryValue">{{ catagoryId }}</div>  
     </span>
     <span  id="charactersTypedGroup">
         <div class=charactersTyped id="charactersTypedLabel" name ="charactersTypedLabel">Characters Typed</div>
@@ -12,7 +12,7 @@
         <div class="errors" id="errorsValue" name ="errorsValue">{{ state.errors }}</div>  
     </span>
     <span  id="timerGroup">
-        <div class=timer id="timerLabel" name ="timerLabel">{{wpm}}</div>
+        <div class=timer name ="timerLabel">{{wpm}}</div>
         <div class=timer id="timerValue" name ="timerValue">w:{{state.wordPosition}}l:{{state.letterPosition}} Correct:{{state.correctchars}}</div>  
     </span>
     <!--a class=test_category id="category" name ="category">category</a>
@@ -21,8 +21,8 @@
     <a class=time_sect id="time" name ="time">category</a>-->
 </div>
 <div class="test_site">
-    <textarea id="snippet_area" value="{{state.words}}" name="display" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
-    <textarea id=" " name="input" [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
+    <textarea value="{{state.words}}" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
+    <textarea [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
 </div>
 <button *ngIf="testmat" (click)="newTest()" >New Test</button>
 <!-- <div>
