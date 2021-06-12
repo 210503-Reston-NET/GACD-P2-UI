@@ -1,4 +1,4 @@
-export class TestModel{
+export interface TestModel{
     catagoryId: number;
     numberofcharacters : number;
     numberoferrors: number
