@@ -7,23 +7,31 @@
         <div class=charactersTyped id="charactersTypedLabel" name ="charactersTypedLabel">Characters Typed</div>
         <div class=charactersTyped id="charactersTypedValue" name ="charactersTypedValue"></div>  
     </span>
-    <span  id="errorGroup">
+
         <div class=errors id="errorsLabel" name ="errorsLabel">Errors</div>
         <div class="errors" id="errorsValue" name ="errorsValue">{{ state.errors }}</div>  
-    </span>
-    <span  id="timerGroup">
-        <div class=timer id="timerLabel" name ="timerLabel">{{wpm}}</div>
-        <div class=timer id="timerValue" name ="timerValue">w:{{state.wordPosition}}l:{{state.letterPosition}} Correct:{{state.correctchars}}</div>  
-    </span>
+
+
+        <div class=timer id="timerLabel" name ="timerLabel">Wpm: {{wpm}}</div>
+
     <!--a class=test_category id="category" name ="category">category</a>
     <a class=typed_sect id="type_count" name ="type_count">category</a>
     <a class=error_sect id="error" name ="error">category</a>
     <a class=time_sect id="time" name ="time">category</a>-->
 </div>
-<div class="test_site">
+<div class="mt-2">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-12">
+            <pre tabindex="0" (click)= "focusinput" (keydown)="keyIntercept($event)" class="col-12 text-light bg-dark p-4" ><span *ngFor="let t of state.wordarray; index as i"[attr.id]="'char-'+i">{{t}}</span></pre>
+          </div>
+      </div>
+    </div>
+</div>
+<!-- <div class="test_site">
     <textarea id="snippet_area" value="{{state.words}}" name="display" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
     <textarea id=" " name="input" [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
-</div>
+</div> -->
 <button *ngIf="testmat" (click)="newTest()" >New Test</button>
 <!-- <div>
     <h1>Author: {{ testmat.author }}</h1>
