@@ -24,6 +24,9 @@ import { TestComponent } from './pages/test/test.component';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 import { ViewCompetitionsComponent } from './pages/view-competitions/view-competitions.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,7 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
     ViewCompetitionsComponent
   ],
   imports: [
+    NgbModule,
     HttpClientModule,
     FormsModule,
     BrowserModule,

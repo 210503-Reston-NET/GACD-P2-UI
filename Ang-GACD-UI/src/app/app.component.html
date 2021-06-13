@@ -1,5 +1,19 @@
 
-<aside class="pop-menu_container" [ngClass]="{'pop-menu_container-active': showMenu}" (click)="displayMenu()">
+<div class="root_container" >
+    <main class="main_container">
+      <app-nav-bar></app-nav-bar>
+        <div class="main-container_bg"></div>
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="main_footer">
+        <small class="copyright__text">Copyright © 2021 Kwik Koder</small>
+    </footer>
+</div>
+
+
+
+<!-- <aside class="pop-menu_container" [ngClass]="{'pop-menu_container-active': showMenu}" (click)="displayMenu()">
   <nav class="pop-menu" [ngClass]="{'pop-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
     <div *ngIf="auth.user$ | async as user"> 
       <section class="menu-header">
@@ -30,10 +44,8 @@
       </section>
     </div>
   </nav>
-</aside>
-  
-  <div class="root_container" >
-      <header class="main_header">
+</aside> -->
+        <!-- <header class="main_header">
   
           <div class="top_bar">
             <svg (click)="displayMenu()" class="menu_icon">
@@ -64,16 +76,6 @@
             </li>
           </ul> 
           </div>
-      </header>
-  
-      <main class="main_container">
-          <div class="main-container_bg"></div>
-          <router-outlet></router-outlet>
-      </main>
-  
-      <footer class="main_footer">
-          <small class="copyright__text">Copyright © 2021 Kwik Koder</small>
-      </footer>
-  </div>
+      </header> -->
 
 
