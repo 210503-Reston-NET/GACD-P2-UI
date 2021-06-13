@@ -1,19 +1,68 @@
-  <nav class="navbar navbar-expand-lg container-fluid">
-    <a class="navbar-brand" href="#"><img class="logo" src="https://api.freelogodesign.org/files/4981cd4ed1774227824e712939d53c78/thumb/logo_200x200.png?v=637588683320000000"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <!-- <nav class="navbar navbar-expand-lg"> -->
+    <!-- <a class="navbar-brand" href="#"><img class="logo" src="https://api.freelogodesign.org/files/4981cd4ed1774227824e712939d53c78/thumb/logo_200x200.png?v=637588683320000000"></a> -->
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>  
+    </button>   -->
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a href="test">Take a Test</a>
+        </li>
         <li class="nav-item">
           <a href="profile">Profile</a>
         </li>
         <li class="nav-item">
-          <a href="apitest">Test Page</a>
+          <a href="competitions">Competitions</a>
         </li>
+        <li class="nav-item">
+          <a href="leaderboard">Leaderboards</a>
+        </li>
+        
         <li class="nav-item">
           <app-authentication-button></app-authentication-button>
         </li>
       </ul> 
     </div>
+  </nav> -->
+
+  <!-- margin: 2px;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  background-color: black;
+  border-radius: 20px;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe; -->
+
+  <nav class="navbar navbar-light">
+    <a class="navbar-brand" href="#">Kwik Koder</a>
+    <button class="navbar-toggler toggle-btn" style="margin-right:1em;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarSupportedContent">
+
+      <span class="navbar-toggler-icon" ></span>
+    </button>
+  
+    <div class="collapse navbar-collapse justify-content-right" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto" style="margin:1em;">
+        <li class="nav-item">
+          <button class="btn btn-primary btn-block nav-btn"  [routerLink]="['test']">Take a Test</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary btn-block nav-btn"  [routerLink]="['profile']">Profile</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary btn-block nav-btn"  [routerLink]="['competitions']">Competitions</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary btn-block nav-btn"  [routerLink]="['leaderboard']">Leaderboards</button>
+        </li>
+        
+        <li class="nav-item">
+          <app-authentication-button></app-authentication-button>
+        </li>
+      </ul>
+    </div>
   </nav>
+  <a class="logo_icon">
+    <img src="https://api.freelogodesign.org/files/610f46969ca84d6aa71e0ef605b9caeb/thumb/logo_200x200.png?v=637589090550000000" alt="logo"/>
+</a>
