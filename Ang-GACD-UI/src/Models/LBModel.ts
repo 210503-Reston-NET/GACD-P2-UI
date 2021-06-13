@@ -1,6 +1,7 @@
 export class LBModel {
-    userName : string;
-    acc : number;
-    wpm : number;
-    ranking : number
+    UserName : string;
+    Name : string;
+    AverageWPM : number;
+    AverageAcc : number;
+    Ranking : number;
 }

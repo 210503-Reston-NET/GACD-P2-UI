@@ -2,16 +2,16 @@
     <table class = "table">
         <thead>
             <th>Category</th>
-            <th>Participants</th>
+            <th>Name</th>
             <th>Start Date</th>
             <th>End Date</th>
         </thead>
         <tbody>
             <tr *ngFor="let CompModel of CompModels;">
-                <td>{{CompModel.category}}</td>
-                <td>{{CompModel.participants}}</td>
-                <td>{{LBModel.startDate}}</td>
-                <td>{{LBModel.endDate}}</td>
+                <td>{{CompModel.Category}}</td>
+                <td>{{CompModel.Name}}</td>
+                <td>{{LBModel.Start}}</td>
+                <td>{{LBModel.End}}</td>
             </tr>
         </tbody>
     </table>

@@ -23,7 +23,7 @@ export class LeaderboardComponent implements OnInit {
     this.api.getLeaderBoardByCatagoryId(id).then(res => this.LBModels = res);  
   }
   public SearchLetters(letterString:string) :void{
-    if(letterString) this.FilteredLBModels = this.LBModels.filter((LBModel)=>LBModel.userName.includes(letterString))
+    if(letterString) this.FilteredLBModels = this.LBModels.filter((LBModel)=>LBModel.UserName.includes(letterString))
     else this.FilteredLBModels = this.LBModels
   }
 
