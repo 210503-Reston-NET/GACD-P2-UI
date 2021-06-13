@@ -23,7 +23,7 @@ export class TestComponent implements OnInit {
 
   ngOnInit(): void{
     //place for category
-    this.catagory=-1;
+    this.category=-1;
     this.newTest();
 
     
@@ -43,11 +43,11 @@ export class TestComponent implements OnInit {
   wpm: number;
   expectSpace: boolean;
   skip: boolean;
-  catagory: number;
+  category: number;
 
 
   newTest(): void{
-    let id:number = this.catagory
+    let id:number = this.category
     console.log(id)
     this.wpm = 0;
     this.state = {
@@ -157,12 +157,14 @@ export class TestComponent implements OnInit {
   submitResults(){
     console.log("posting test results")
     let model: TestModel = {
-      catagoryId: this.testmat.catagoryId,
+      categoryId: this.category,
       numberofcharacters : this.testmat.content.length,
       numberoferrors: this.state.errors,
       timetakenms : this.timeTaken,
+      wpm: this.wpm,
       date: new Date()
     }
+    console.log(model)
     this.api.postTestResults(model);
   }
 

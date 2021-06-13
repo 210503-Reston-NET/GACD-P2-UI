@@ -1,7 +1,8 @@
 export interface TestModel{
-    catagoryId: number;
+    categoryId: number;
     numberofcharacters : number;
-    numberoferrors: number
+    numberoferrors: number;
+    wpm: number;
     timetakenms : number;
     date: Date;
 }

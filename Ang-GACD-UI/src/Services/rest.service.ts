@@ -39,11 +39,16 @@ export class RestService {
   }
 
   postTestResults(test: TestModel){
-    return this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    let status = this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    status.subscribe(
+      (code) => {console.log("status code:", status);} 
+    )
+    //console.log("status code:", status);
   }
 
   postCompetitionResults(test: TestModel){
-    return this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    let status =  this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    console.log("status code:", status);
   }
 
 }
