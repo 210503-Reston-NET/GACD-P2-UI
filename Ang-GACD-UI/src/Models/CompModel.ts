@@ -1,7 +1,7 @@
 export class CompModel{
-    startDate : Date;
-    endDate : Date;
-    category: number;
-    participants: number;
+    Start : Date;
+    End : Date;
+    Category: number;
+    Name : string;
 
 }
