@@ -11,6 +11,8 @@ import { TestModel } from 'src/Models/TestModel';
 
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { Language } from 'src/Models/LanguageEnum';
+import { Interface } from 'readline';
+import { templateJitUrl } from '@angular/compiler';
 
 
 @Component({
@@ -28,21 +30,20 @@ export class TestComponent implements OnInit {
   constructor(public auth: AuthService, private api: RestService) { }
 
   ngOnInit(): void{
+    //this.counter.min = 1;
+    //this.counter.sec = 1;
     //place for category
     this.category=-1;
     this.newTest();
-
-    
-    this.state.words = "Hello world!"
     document.documentElement.addEventListener('keydown', function (e) {
       if ( ( e.key) == " ") {
           e.preventDefault();
       }
-  }, false);
+    }, false);
     
   }
 
-  testmat: TestMaterial = null;
+  testmat: TestMaterial = {author: '', content: '', length: 0,catagoryId: 0};
 
   state: State;
   timeTaken: number;
@@ -51,13 +52,17 @@ export class TestComponent implements OnInit {
   skip: boolean;
   category: number;
   categoryName: string;
-
+  timerFinished: boolean;
+  seconds: number = 0;
+  minutes: number = 0;
 
   newTest(): void{
     let id:number = this.category
     this.categoryName = Language[id]
-    console.log(this.categoryName)
+    //console.log(this.categoryName)
+    this.timerFinished = false;
 
+    // this.testmat.author= '';
 
     this.wpm = 0;
     this.state = {
@@ -78,22 +83,35 @@ export class TestComponent implements OnInit {
     this.skip = false
     //get content to type
     this.api.getTestContentByCatagoryId(id).then(
-      (obj)=> {this.testmat = obj;
-        this.testmat.content= obj.content;
-        this.testmat.author = obj.author;
+      (obj)=> {
+        this.testmat = obj;
+        //this.testmat.content= obj.content;
+        //this.testmat.author = obj.author;
         this.state.words = this.testmat.content;
         this.state.wordarray = this.state.words.split('');
         this.state.wordarray= this.state.wordarray.filter(this.isBadChar);
+
+        let lines =0;
+        //limit to 500 new line chars
+        for (let index = 0; index < this.state.wordarray.length; index++) {
+          const element = this.state.wordarray[index];
+          if(element == "\n"){
+            lines++;
+          }
+          if(lines > 500){
+            this.state.wordarray = this.state.wordarray.slice(0, index);
+          }
+        }  
       })
   }
 
   isBadChar(element: string, index: number, array: any) {
     if((element == "\r") || (element == "\t")){
-      return false
+      return false;
     }else{
-      return true
+      return true;
     }
- } 
+  } 
 
   
   wordsPerMinute (charsTyped: number, ms: number): number {
@@ -107,7 +125,10 @@ export class TestComponent implements OnInit {
     let e = event.key
     if (!this.state.started) {
       this.state.started= true
-      this.state.startTime = new Date() 
+      this.state.startTime = new Date()
+      if(this.category != -1){
+        this.startTimer()
+      }
     }
     let expectedLetter = this.state.wordarray[this.state.letterPosition]
 
@@ -147,6 +168,7 @@ export class TestComponent implements OnInit {
     document.getElementById("input-area").focus()
   }
   checkIfFinished(): boolean {
+    
     let numletters = this.state.wordarray.length-1   
 
     const wpm = this.wordsPerMinute(this.state.correctchars, new Date().getTime() - this.state.startTime.getTime() )
@@ -155,14 +177,22 @@ export class TestComponent implements OnInit {
     //check if words are done
     if(this.state.letterPosition >= this.state.wordarray.length){ 
       const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
-      this.timeTaken = timeMillis;
-     
+      this.timeTaken = timeMillis;     
       console.log("#errors", this.state.errors)
       this.state.finished = true;
       this.submitResults()
       return true
      
     }
+    if(this.timerFinished){
+      const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
+      this.timeTaken = timeMillis;     
+      console.log("#errors", this.state.errors)
+      this.state.finished = true;
+      this.submitResults()
+      return true
+    }
+
     return false;
   }
 
@@ -170,7 +200,7 @@ export class TestComponent implements OnInit {
     console.log("posting test results")
     let model: TestModel = {
       categoryId: this.category,
-      numberofcharacters : this.testmat.content.length,
+      numberofcharacters : this.state.correctchars,
       numberoferrors: this.state.errors,
       timetakenms : this.timeTaken,
       wpm: this.wpm,
@@ -178,6 +208,25 @@ export class TestComponent implements OnInit {
     }
     console.log(model)
     this.api.postTestResults(model);
+  }
+
+ 
+
+  startTimer() {
+    this.minutes = 1
+    this.seconds = 0 // choose whatever you want
+    let intervalId = setInterval(() => {
+      if (this.seconds - 1 == -1) {
+        this.minutes -= 1;
+        this.seconds = 59
+      } 
+      else this.seconds -= 1
+      if (this.minutes === 0 && this.seconds == 0){
+        this.timerFinished = true;
+        clearInterval(intervalId)
+        this.checkIfFinished()
+      }
+      }, 1000)
   }
 
 
