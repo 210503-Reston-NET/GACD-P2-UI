@@ -25,11 +25,12 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.catId = -1;
+    this.catId = 0;
     this.GetBestUsers(this.catId);    
   }
   GetBestUsers(id:number): void{
-    this.api.getLeaderBoardByCatagoryId(id).then(res => {this.LBModels = res; this.FilteredLBModels= res; console.log(res)});  
+    this.catId = id;
+    this.api.getLeaderBoardByCatagoryId(id).then(res => {this.LBModels = res; this.FilteredLBModels= res});  
   }
   public SearchLetters() :void{
     if(this.text){

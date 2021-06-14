@@ -1,6 +1,7 @@
 <div class = "container">
     <h3>Search For User: <input [(ngModel)]="text" (input)="SearchLetters()" placeholder="Enter Username Here"></h3> 
     <app-lang-select class="" (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
+    <button (click)="GetBestUsers(0)">Overall</button> 
     <table class = "table">
         <thead>
             <th>Ranking</th>
