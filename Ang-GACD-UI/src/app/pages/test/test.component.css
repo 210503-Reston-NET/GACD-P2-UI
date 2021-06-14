@@ -17,12 +17,12 @@
 
 .info-box {
     text-align: center;
-    
+    /* display: block; */
     background-color: var(--dark0_soft);
     border-color: var(--dark0_hard);
     border-width: 5px;
     border-radius: 2em;
-    width: 15em;
+    width: 95%;
     height: 5em;
 }
 
@@ -34,4 +34,8 @@
 .info-value{
     color: var(--bright_purple);
     font-size: 25pt;
+}
+.info-value-author{
+    color: var(--bright_purple);
+    font-size: 15pt;
 }

@@ -41,8 +41,9 @@ const routes: Routes = [
     component: ViewCompetitionsComponent
   },
   { 
-    path: 'product-details/:id',
-    component: CompetitionTestComponent
+    path: 'CompetitionTest/:id',
+    component: CompetitionTestComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
