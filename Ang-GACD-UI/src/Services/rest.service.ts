@@ -58,5 +58,4 @@ export class RestService {
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();
     
   }
-
 }
