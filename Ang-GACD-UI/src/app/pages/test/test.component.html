@@ -1,25 +1,32 @@
-<div class="test_info">
-    <app-lang-select (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
-    <span  id="categoryGroup">
-        <div class=test_category id="categoryLabel" name ="categoryLabel">Category</div>
-        <div class=test_category id="categoryValue" name ="categoryValue"></div>  
-    </span>
-    <span  id="charactersTypedGroup">
-        <div class=charactersTyped id="charactersTypedLabel" name ="charactersTypedLabel">Characters Typed</div>
-        <div class=charactersTyped id="charactersTypedValue" name ="charactersTypedValue"></div>  
-    </span>
-
-        <div class=errors id="errorsLabel" name ="errorsLabel">Errors</div>
-        <div class="errors" id="errorsValue" name ="errorsValue">{{ state.errors }}</div>  
-
-
-        <div class=timer id="timerLabel" name ="timerLabel">Wpm: {{wpm}}</div>
-
-    <!--a class=test_category id="category" name ="category">category</a>
-    <a class=typed_sect id="type_count" name ="type_count">category</a>
-    <a class=error_sect id="error" name ="error">category</a>
-    <a class=time_sect id="time" name ="time">category</a>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"><div class="info-box justify-content-center"><span class="info-text">Current Category</span><br><app-lang-select class="info-box justify-content-center" (newLangSelectedEvent)="langSelected($event)"></app-lang-select></div></div>
+        <!-- <div class="col-3">
+            <div class="info-box">
+                <span class="info-text">Current Category</span>
+                <br>
+                <span class="info-value">{{categoryName}}</span>
+            </div>
+        </div> -->
+        <div class="col-2">
+            <div class="info-box">
+                <span class="info-text">Errors</span>
+                <br>
+                <span class="info-value">{{ state.errors }}</span>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="info-box">
+                <span class="info-text">Wpm</span>
+                <br>
+                <span class="info-value">{{wpm}}</span>
+            </div>
+        </div>
+    </div>
 </div>
+    <!-- <div class="test_info">
+        
+    </div> -->
 <div class="mt-2">
     <div class="container-fluid">
       <div class="row">
@@ -33,7 +40,7 @@
     <textarea id="snippet_area" value="{{state.words}}" name="display" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
     <textarea id=" " name="input" [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
 </div> -->
-<button *ngIf="testmat" (click)="newTest()" >New Test</button>
+<button class="kwik-btn" *ngIf="testmat" (click)="newTest()" >New Test</button>
 <!-- <div>
     <h1>Author: {{ testmat.author }}</h1>
     <h1 *ngIf="testmat">{{ testmat.content }}</h1>

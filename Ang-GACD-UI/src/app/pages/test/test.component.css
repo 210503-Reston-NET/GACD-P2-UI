@@ -15,3 +15,23 @@
 
 }
 
+.info-box {
+    text-align: center;
+    
+    background-color: var(--dark0_soft);
+    border-color: var(--dark0_hard);
+    border-width: 5px;
+    border-radius: 2em;
+    width: 15em;
+    height: 5em;
+}
+
+.info-text{
+    margin: 1.5em;
+    color: var(--bright_aqua);
+}
+
+.info-value{
+    color: var(--bright_purple);
+    font-size: 25pt;
+}
