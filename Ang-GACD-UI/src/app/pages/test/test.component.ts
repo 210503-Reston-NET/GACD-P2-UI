@@ -10,6 +10,7 @@ import { AppComponent } from 'src/app/app.component';
 import { TestModel } from 'src/Models/TestModel';
 
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
+import { Language } from 'src/Models/LanguageEnum';
 
 
 @Component({
@@ -49,10 +50,15 @@ export class TestComponent implements OnInit {
   expectSpace: boolean;
   skip: boolean;
   category: number;
+  categoryName: string;
 
 
   newTest(): void{
     let id:number = this.category
+    this.categoryName = Language[id]
+    console.log(this.categoryName)
+
+
     this.wpm = 0;
     this.state = {
       words: '',
