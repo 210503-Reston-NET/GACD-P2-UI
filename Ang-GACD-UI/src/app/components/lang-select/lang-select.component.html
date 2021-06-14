@@ -1,0 +1,8 @@
+<select [(ngModel)]="selection"
+(change)='itemSelected($event)'>>
+    <option *ngFor="let lang of enumKeys" 
+            [value]="lang">
+            {{langList[lang]}}
+      <!-- {{FileType2LabelMapping[fileType]}} -->
+    </option>
+  </select>
