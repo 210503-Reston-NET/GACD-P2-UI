@@ -8,8 +8,8 @@ import { Usermodel } from 'src/Models/UserModel';
 import {UserService} from 'src/Services/User.service';
 import { AppComponent } from 'src/app/app.component';
 import { TestModel } from 'src/Models/TestModel';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
+import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 
 
 @Component({
@@ -18,6 +18,11 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  
+  langSelected(event: number){
+    this.category = event;
+    this.newTest()
+  }
 
   constructor(public auth: AuthService, private api: RestService) { }
 
@@ -48,7 +53,6 @@ export class TestComponent implements OnInit {
 
   newTest(): void{
     let id:number = this.category
-    console.log(id)
     this.wpm = 0;
     this.state = {
       words: '',
@@ -146,7 +150,7 @@ export class TestComponent implements OnInit {
       this.timeTaken = timeMillis;
      
       console.log("#errors", this.state.errors)
-     
+      this.state.finished = true;
       this.submitResults()
       return true
      
@@ -167,6 +171,8 @@ export class TestComponent implements OnInit {
     console.log(model)
     this.api.postTestResults(model);
   }
+
+
 
 }
 
