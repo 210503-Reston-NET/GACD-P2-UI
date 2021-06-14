@@ -9,6 +9,7 @@ import { TestComponent } from 'src/app/pages/test/test.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 import { ViewCompetitionsComponent } from './pages/view-competitions/view-competitions.component';
+import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'competitions',
     component: ViewCompetitionsComponent
+  },
+  { 
+    path: 'product-details/:id',
+    component: CompetitionTestComponent
   }
 ];
 
