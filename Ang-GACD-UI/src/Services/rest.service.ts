@@ -50,12 +50,13 @@ export class RestService {
 
   postCompetitionResults(test: CompetitionTestResults){
     let status =  this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    //need to see if status contains the rank from the competition
     console.log("status code:", status);
   }
 
   getCompetitionContent(id: number):Promise<CompetitionContent>{
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();
-    //api/CompetitonStats/{id}
+    
   }
 
 }
