@@ -1,6 +1,106 @@
 
 <div *ngIf="auth.user$ | async as user">
-    <div class="row align-items-center profile-header">
+  <div clas="container">
+    <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+              <img
+              [src]="user.picture"
+              alt="User's profile picture"
+              class="rounded-circle img-fluid profile-picture"
+              />
+              <div class="file btn btn-lg btn-primary">
+                Change Picture
+                <input type="file" name="file"/>
+              </div>
+          </div>
+        </div>
+          <div class="col-md-6">
+            <div class="main-body">
+                <h4>{{ user.nickname }}</h4>
+                <h5>{{ user.email }}</h5>
+                <p1>Rank: Mega Coder</p1>
+            
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active " id="info-tab1" href="#info-tab"data-toggle="tab" role="tab" aria-controls="info-tab" aria-selected="true">Info</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="stats-tab1" href="#stats-tab" data-toggle="tab" role="tab" aria-controls="stats-tab" aria-selected="false">Stats</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+  </div>
+  <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-8">
+    <div class="tab-content info-tab" id=myTabContent>
+      <div class="tab-pane fade show active" id="info-tab" role="tabpanel" aria-labelledby="info-tab1">
+        <div class="row">
+          <div class="col-sm-4">
+              <label>User Name</label>
+          </div>
+          <div class="col-sm-6">
+              <p>{{user.nickname}}</p>
+          </div>
+          <div class="col-sm-4">
+            <label>Email Address</label>
+          </div>
+          <div class="col-sm-6">
+            <p>{{user.name}}</p>
+          </div>
+          <div class="col-sm-4">
+            <label>Nick Name</label>
+          </div>
+          <div class="col-sm-6">
+            <p>{{user.nickname}}</p>
+          </div>
+          <div class="col-sm-4">
+            <label>About Me</label>
+          </div>
+          <div class="col-sm-6">
+            <p>I love coding and video games.
+              I will destory everyone with my ultra typing skills</p>
+          </div>
+        </div>
+      </div>
+        <div class="tab-pane fade" id="stats-tab" role="tabpanel" aria-labelledby="stats-tab1">
+          <div class="row">
+            <div class="col-sm-4">
+                <label>Words Per Minute</label>
+            </div>
+            <div class="col-sm-6">
+                <p>PlaceHolder 1</p>
+            </div>
+            <div class="col-sm-4">
+              <label>Average Errors</label>
+            </div>
+            <div class="col-sm-6">
+              <p>PlaceHolder 2</p>
+            </div>
+            <div class="col-sm-4">
+              <label>Test Finish</label>
+            </div>
+            <div class="col-sm-6">
+              <p>PlaceHolder 3</p>
+            </div>
+            <div class="col-sm-4">
+              <label>About Me</label>
+            </div>
+            <div class="col-sm-6">
+              <p>I love coding and video games.
+                I will destory everyone with my ultra typing skills</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <!--<div class="row align-items-center profile-header">
       <div class="col-md-2 mb-3">
         <img
           [src]="user.picture"
@@ -17,7 +117,7 @@
         </ul>
         
       </div>
-    </div>
+    </div>-->
   
     <div class="row" *ngIf="profileJson">
       <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
