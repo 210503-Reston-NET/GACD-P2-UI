@@ -28,6 +28,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
 import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
+import { CreateCompetitionComponent } from './create-competition/create-competition.component';
 import { DisplayPercentPipe } from './pipes/display-percent.pipe';
 import { DisplayDatePipe } from './pipes/display-date.pipe';
 
@@ -52,8 +53,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     LangSelectComponent,
     ResultimageComponent,
     CompetitionTestComponent,
+    CreateCompetitionComponent,
     DisplayPercentPipe,
-    DisplayDatePipe,
+    DisplayDatePipe
   ],
   imports: [
     NgbModule,
@@ -81,17 +83,40 @@ import { MatTabsModule } from '@angular/material/tabs';
                 //Authorization: `Bearer ${ this.userToken }`
               }
             },
-            // {
-            //   // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
-            //   uri: `${env.dev.serverUrl}`,
-            //   tokenOptions: {
-            //     // The attached token should target this audience
-            //     audience: env.auth.audience,
-            //     // The attached token should have these scopes
-            //     scope: 'read:current_user',
-            //     //Authorization: `Bearer ${ this.userToken }`
-            //   }
-            // },
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}api/User/username`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            },
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}api/Competition`,
+              httpMethod: "POST",
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            },
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}api/UserStat/*`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            },
 
         ]
       }
