@@ -53,7 +53,8 @@ const routes: Routes = [
   },
   {
     path: 'NewCompetition',
-    component: CreateCompetitionComponent
+    component: CreateCompetitionComponent,
+    canActivate: [AuthGuard]
   }
   
 
