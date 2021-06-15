@@ -1,8 +1,8 @@
 export class CompModel{
-    Start : Date;
-    End : Date;
-    Category: number;
-    Name : string;
+    start : Date;
+    end : Date;
+    category: number;
+    name : string;
     snippet: string;
     author: string;
 }

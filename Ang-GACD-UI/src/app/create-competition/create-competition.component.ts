@@ -24,20 +24,23 @@ export class CreateCompetitionComponent implements OnInit {
   CreateCompetition(): void{
 
     this.UserName = new UserNameModel;
-    this.UserName.name = "Dummy";
     let startDate = new Date();
     let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
-    this.api.getloggedInUser().then(user => this.UserName = user);
-    let newComp: CompModel = 
-    {
-      Start: startDate,
-      End: endDate,
-      Category: 1,
-      Name: document.querySelector<HTMLInputElement>('#name')!.value,
-      snippet: document.querySelector<HTMLInputElement>('#snippet')!.value,
-      author: this.UserName.name
-    };
-    console.log(newComp.author);
-    this.api.postCompetition(newComp);
+    this.api.getloggedInUser().then(user => {this.UserName = user
+      let newComp: CompModel = 
+      {
+        start: startDate,
+        end: endDate,
+        category: 1,
+        name: document.querySelector<HTMLInputElement>('#name')!.value,
+        snippet: document.querySelector<HTMLInputElement>('#snippet')!.value,
+        author: this.UserName.name
+      };
+      console.log(startDate);
+      console.log(endDate);
+      console.log(newComp.author);
+      this.api.postCompetition(newComp);
+      }    
+    );   
   }
 }
