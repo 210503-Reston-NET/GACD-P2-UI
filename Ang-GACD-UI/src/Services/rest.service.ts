@@ -32,7 +32,11 @@ export class RestService {
 
   //production api calls:
   getLeaderBoardByCatagoryId(id: number): Promise<LBModel[]>{
-    return this.http.get<LBModel[]>(`${env.dev.serverUrl}api/LB/${id}`).toPromise();
+    if(id == 0){
+      return this.http.get<LBModel[]>(`${env.dev.serverUrl}api/LB`).toPromise(); 
+    }else{
+      return this.http.get<LBModel[]>(`${env.dev.serverUrl}api/LB/${id}`).toPromise(); 
+    }
   }
 
   getTestContentByCatagoryId(id: number): Promise<TestMaterial>{
@@ -60,11 +64,6 @@ export class RestService {
     console.log("status code:", status);
   }
   getCompetitionContent(id: number):Promise<CompetitionContent>{
-    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();
-    
+    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    
   }
-  getloggedInUser():Promise<UserNameModel>{
-    return this.http.get<UserNameModel>(`${env.dev.serverUrl}api/User/username}`).toPromise();
-  }
-
 }
