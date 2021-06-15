@@ -5,6 +5,8 @@ import { TestModel } from 'src/Models/TestModel';
 import { LBModel } from 'src/Models/LBModel';
 import { TestMaterial } from 'src/Models/TestMaterial';
 import { CompModel } from 'src/Models/CompModel';
+import { StatModel } from 'src/Models/StatModel';
+import { Usermodel } from 'src/Models/UserModel';
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
@@ -49,6 +51,13 @@ export class RestService {
   postCompetitionResults(test: TestModel){
     let status =  this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
     console.log("status code:", status);
+  }
+
+  getUserStats(): Promise<StatModel[]>{
+    return this.http.get<StatModel[]>(`${env.dev.serverUrl}api/UserStat/all`).toPromise();
+  }
+  getUserName(): Promise<Usermodel>{
+    return this.http.get<Usermodel>(`${env.dev.serverUrl}api/User/username`).toPromise();
   }
 
 }

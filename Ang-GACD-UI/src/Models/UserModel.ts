@@ -1,6 +1,5 @@
 export class Usermodel {
-    id! : number;
-    name! : string;
-    username! : string;
-    email! : string;
+    userName : string;
+    name : string;
+    
 }

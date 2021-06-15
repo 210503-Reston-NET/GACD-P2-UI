@@ -26,7 +26,8 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LangSelectComponent } from './components/lang-select/lang-select.compon
   imports: [
     NgbModule,
     HttpClientModule,
+    MatTabsModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
@@ -72,7 +74,8 @@ import { LangSelectComponent } from './components/lang-select/lang-select.compon
             }
         ]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,
