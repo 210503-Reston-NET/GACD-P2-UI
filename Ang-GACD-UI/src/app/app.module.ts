@@ -26,6 +26,7 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
+import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 import { DisplayPercentPipe } from './pipes/display-percent.pipe';
 
@@ -46,6 +47,7 @@ import { DisplayPercentPipe } from './pipes/display-percent.pipe';
     LeaderboardComponent,
     ViewCompetitionsComponent,
     LangSelectComponent,
+    ResultimageComponent,
     CompetitionTestComponent,
     DisplayPercentPipe
   ],
