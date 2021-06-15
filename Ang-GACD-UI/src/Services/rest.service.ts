@@ -61,7 +61,7 @@ export class RestService {
   }
   postCompetition(comp: CompModel){
     let status = this.http.post(`${env.dev.serverUrl}api/Competition`, comp);
-    console.log("status code:", status);
+    status.toPromise().then(thing => {console.log(thing)});
   }
   getCompetitionContent(id: number):Promise<CompetitionContent>{
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    

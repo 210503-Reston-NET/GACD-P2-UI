@@ -14,7 +14,7 @@ export class ViewCompetitionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getCompetitions().then(res => this.CompModels = res);
-    this.CurrentCompModels = this.CompModels.filter((CompModel)=>((CompModel.End) < new Date()));
+    this.CurrentCompModels = this.CompModels.filter((CompModel)=>((CompModel.end) < new Date()));
   }
 
 }
