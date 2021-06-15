@@ -72,7 +72,7 @@ import { MatTabsModule } from '@angular/material/tabs';
           //`${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
             {
               // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
-              uri: `${env.dev.serverUrl}*`,
+              uri: `${env.dev.serverUrl}api/TypeTest*`,
               tokenOptions: {
                 // The attached token should target this audience
                 audience: env.auth.audience,
@@ -80,7 +80,19 @@ import { MatTabsModule } from '@angular/material/tabs';
                 scope: 'read:current_user',
                 //Authorization: `Bearer ${ this.userToken }`
               }
-            }
+            },
+            // {
+            //   // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+            //   uri: `${env.dev.serverUrl}`,
+            //   tokenOptions: {
+            //     // The attached token should target this audience
+            //     audience: env.auth.audience,
+            //     // The attached token should have these scopes
+            //     scope: 'read:current_user',
+            //     //Authorization: `Bearer ${ this.userToken }`
+            //   }
+            // },
+
         ]
       }
     }),
