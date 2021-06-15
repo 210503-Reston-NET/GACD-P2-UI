@@ -2,6 +2,10 @@
 <div *ngIf="auth.user$ | async as user">
   <div clas="container">
     <div class="row">
+      <div class="spacer">
+      </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
           <div class="profile-img">
               <img
@@ -17,26 +21,17 @@
         </div>
           <div class="col-md-6">
             <div class="main-body">
-                <h4>{{ user.nickname }}</h4>
+                <h4>{{ UserInfo.name }}</h4>
                 <h5>{{ user.email }}</h5>
                 <p1>Rank: Mega Coder</p1>
-            
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active " id="info-tab1" href="#info-tab"data-toggle="tab" role="tab" aria-controls="info-tab" aria-selected="true">Info</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="stats-tab1" href="#stats-tab" data-toggle="tab" role="tab" aria-controls="stats-tab" aria-selected="false">Stats</a>
-                </li>
-              </ul>
             </div>
           </div>
   </div>
   <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-8">
-    <div class="tab-content info-tab" id=myTabContent>
-      <div class="tab-pane fade show active" id="info-tab" role="tabpanel" aria-labelledby="info-tab1">
+    <mat-tab-group class="tab-bar" animationDuration="1500ms">
+      <mat-tab class="info" label="Info">
         <div class="row">
           <div class="col-sm-4">
               <label>User Name</label>
@@ -63,38 +58,45 @@
             <p>I love coding and video games.
               I will destory everyone with my ultra typing skills</p>
           </div>
-        </div>
-      </div>
-        <div class="tab-pane fade" id="stats-tab" role="tabpanel" aria-labelledby="stats-tab1">
+        </div> 
+      </mat-tab>
+      <mat-tab label="Stats">
+        <tr *ngFor="let statMod of statOb;">
           <div class="row">
+            <div class="col-sm-4">
+              <label>Category</label>
+          </div>
+          <div class="col-sm-6">
+              <p>{{statMod.category}}</p>
+          </div>
             <div class="col-sm-4">
                 <label>Words Per Minute</label>
             </div>
             <div class="col-sm-6">
-                <p>PlaceHolder 1</p>
+                <p>{{statMod.averagewpm}}</p>
             </div>
             <div class="col-sm-4">
-              <label>Average Errors</label>
+              <label>Average Accuracy</label>
             </div>
             <div class="col-sm-6">
-              <p>PlaceHolder 2</p>
+              <p>{{statMod.averageaccuracy}}</p>
             </div>
             <div class="col-sm-4">
-              <label>Test Finish</label>
+              <label>Tests Taken</label>
             </div>
             <div class="col-sm-6">
-              <p>PlaceHolder 3</p>
+              <p>{{statMod.numberoftests}}</p>
             </div>
             <div class="col-sm-4">
-              <label>About Me</label>
+              <label>Test Time</label>
             </div>
             <div class="col-sm-6">
-              <p>I love coding and video games.
-                I will destory everyone with my ultra typing skills</p>
+              <p>{{statMod.totaltesttime}}</p>
             </div>
           </div>
-        </div>
-      </div>
+          </tr>
+      </mat-tab>
+    </mat-tab-group>
     </div>
   </div>
 </div>
@@ -117,9 +119,9 @@
         </ul>
         
       </div>
-    </div>-->
+    </div>
   
     <div class="row" *ngIf="profileJson">
       <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
-    </div>
+    </div>-->
   </div>

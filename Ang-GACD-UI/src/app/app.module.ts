@@ -32,6 +32,8 @@ import { CreateCompetitionComponent } from './create-competition/create-competit
 import { DisplayPercentPipe } from './pipes/display-percent.pipe';
 import { DisplayDatePipe } from './pipes/display-date.pipe';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { DisplayDatePipe } from './pipes/display-date.pipe';
   imports: [
     NgbModule,
     HttpClientModule,
+    MatTabsModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
@@ -106,7 +109,8 @@ import { DisplayDatePipe } from './pipes/display-date.pipe';
 
         ]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,
