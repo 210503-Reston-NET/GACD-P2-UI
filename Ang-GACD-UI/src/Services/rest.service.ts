@@ -59,7 +59,7 @@ export class RestService {
     //need to see if status contains the rank from the competition
     console.log("status code:", status);
   }
-  postCompetittion(comp: CompModel){
+  postCompetition(comp: CompModel){
     let status = this.http.post(`${env.dev.serverUrl}/api/Competition`, comp);
     console.log("status code:", status);
   }

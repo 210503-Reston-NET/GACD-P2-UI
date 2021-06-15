@@ -38,6 +38,6 @@ export class CreateCompetitionComponent implements OnInit {
       author: this.UserName.name
       
     };
-    this.api.postCompetition(newComp).then();
+    this.api.postCompetition(newComp);
   }
 }
