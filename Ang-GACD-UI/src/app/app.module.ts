@@ -26,6 +26,7 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
+import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { LangSelectComponent } from './components/lang-select/lang-select.compon
     TestComponent,
     LeaderboardComponent,
     ViewCompetitionsComponent,
-    LangSelectComponent
+    LangSelectComponent,
+    ResultimageComponent
   ],
   imports: [
     NgbModule,

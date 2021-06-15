@@ -11,7 +11,7 @@ import { TestModel } from 'src/Models/TestModel';
 
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { Language } from 'src/Models/LanguageEnum';
-
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-test',
@@ -20,12 +20,13 @@ import { Language } from 'src/Models/LanguageEnum';
 })
 export class TestComponent implements OnInit {
   
+  
   langSelected(event: number){
     this.category = event;
     this.newTest()
   }
 
-  constructor(public auth: AuthService, private api: RestService) { }
+  constructor(public auth: AuthService, private api: RestService, private router:Router) { }
 
   ngOnInit(): void{
     //place for category
@@ -176,6 +177,7 @@ export class TestComponent implements OnInit {
     }
     console.log(model)
     this.api.postTestResults(model);
+    this.router.navigate(['./resultimage',this.wpm]).then();
   }
 
 
