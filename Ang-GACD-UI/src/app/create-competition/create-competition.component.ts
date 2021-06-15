@@ -13,34 +13,56 @@ import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.
 })
 export class CreateCompetitionComponent implements OnInit {
   UserName: UserNameModel;
-  profileJson: string = null;
+  category: number = -1;
+  snippet: string = '';
+  author: string = '';
+  name: string;
+  // profileJson: string = null;
   constructor(public auth: AuthService, private api: RestService) { }
 
+  langSelected(event: number){
+    this.category = event;
+    this.newSnippet()
+  }
+  
+
   ngOnInit(): void {
-    this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
-    );
+    this.category = -1;
+    this.newSnippet();   
+  }
+
+  newSnippet(){
+    this.api.getTestContentByCatagoryId(this.category).then(
+      (obj)=> {
+        this.snippet = obj.content
+        this.author = obj.author 
+      })
   }
   CreateCompetition(): void{
-
+   
     this.UserName = new UserNameModel;
     let startDate = new Date();
     let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
     this.api.getloggedInUser().then(user => {this.UserName = user
+      if(this.UserName.userName){
+        this.author = this.UserName.userName
+      }else{
+        this.author = this.UserName.name
+      }
       let newComp: CompModel = 
       {
         start: startDate,
         end: endDate,
-        category: 1,
-        name: document.querySelector<HTMLInputElement>('#name')!.value,
-        snippet: document.querySelector<HTMLInputElement>('#snippet')!.value,
-        author: this.UserName.name
+        category: this.category,
+        name: this.name,
+        snippet: this.snippet,
+        author: this.author
       };
-      console.log(startDate);
-      console.log(endDate);
-      console.log(newComp.author);
+       //console.log(this.name);
+      // console.log(endDate);
+      // console.log(newComp.author);
       this.api.postCompetition(newComp);
       }    
     );   
-  }
+   }
 }

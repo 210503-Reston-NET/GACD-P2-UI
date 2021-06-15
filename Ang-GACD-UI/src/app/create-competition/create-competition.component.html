@@ -1,18 +1,15 @@
-<form action="">
-    <div class="form-group">
-        <label for="name">Competition Name</label>
-        <input type="text" class="form-control" name="name" id="name"
-            placeholder="Enter competition name">
-    </div>
-    <div class="form-group">
-        <label for="name">Category</label>
-        <app-lang-select class="" id="CategorySelect"></app-lang-select>
-    </div>
-    <div class="form-group">
-        <label for="state">Snippet</label>
-        <input type="textarea" class="form-control" name="snippet" id="snippet" height="600px"
-            placeholder="enter your code snippet or quote">
-    </div>
-    <input type="button" value="create" (click)="CreateCompetition()">
-    <script src="create-competition.component.ts"></script>
-</form>
+<div class="">
+    <div>Competition Name</div>
+    <input type="text" placeholder="Enter competition name" [(ngModel)]= "name">
+</div>
+<div class="">
+    <div>Category</div>
+    <app-lang-select (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
+    <button class="kwik-btn" (click)="newSnippet()">New Snippet</button>
+</div>
+<div class="col-12">
+    <div>Snippet:</div>
+    <pre contenteditable="true" [(ngModel)]="snippet" class="text-light bg-dark p-1" ngDefaultControl>{{snippet}}</pre>
+</div>
+<button type="button" value="create" (click)="CreateCompetition()">Create</button>
+
