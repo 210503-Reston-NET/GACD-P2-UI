@@ -29,6 +29,7 @@ import { LangSelectComponent } from './components/lang-select/lang-select.compon
 import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 import { DisplayPercentPipe } from './pipes/display-percent.pipe';
+import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { DisplayPercentPipe } from './pipes/display-percent.pipe';
     LangSelectComponent,
     ResultimageComponent,
     CompetitionTestComponent,
-    DisplayPercentPipe
+    DisplayPercentPipe,
+    DisplayDatePipe,
   ],
   imports: [
     NgbModule,

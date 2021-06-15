@@ -7,11 +7,11 @@
             <th>End Date</th>
         </thead>
         <tbody>
-            <tr *ngFor="let CompModel of CompModels;">
-                <td>{{CompModel.Category}}</td>
-                <td>{{CompModel.Name}}</td>
-                <td>{{LBModel.Start}}</td>
-                <td>{{LBModel.End}}</td>
+            <tr *ngFor="let model of CompModels;">
+                <td>{{model.category}}</td>
+                <td>{{model.name}}</td>
+                <td>{{model.start | displayDate}}</td>
+                <td>{{model.end | displayDate}}</td>
             </tr>
         </tbody>
     </table>
