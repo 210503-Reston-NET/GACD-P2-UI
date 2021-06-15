@@ -10,6 +10,7 @@ import { ResultimageComponent } from './pages/resultimage/resultimage.component'
 import { AuthGuard } from '@auth0/auth0-angular';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 import { ViewCompetitionsComponent } from './pages/view-competitions/view-competitions.component';
+import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'resultimage/:wpm',
     component: ResultimageComponent
+  },
+  { 
+    path: 'CompetitionTest/:id',
+    component: CompetitionTestComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

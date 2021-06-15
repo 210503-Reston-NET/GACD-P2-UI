@@ -1,5 +1,7 @@
 <div class = "container">
-    <h3>Search For User: <input [(ngModel)]="text" (input)="SearchLetters($event)" placeholder="Enter Username Here"></h3>
+    <h3>Search For User: <input [(ngModel)]="text" (input)="SearchLetters()" placeholder="Enter Username Here"></h3> 
+    <app-lang-select class="" (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
+    <button (click)="GetBestUsers(0)">Overall</button> 
     <table class = "table">
         <thead>
             <th>Ranking</th>
@@ -8,11 +10,13 @@
             <th>WPM</th>
         </thead>
         <tbody>
-            <tr *ngFor="let LBModel of FilteredLBModels;">
-                <td>{{LBModel.Ranking}}</td>
-                <td>{{LBModel.UserName}}</td>
-                <td>{{LBModel.AverageAccuracy}}</td>
-                <td>{{LBModel.AverageWPM}}</td>
+            <tr *ngFor="let LBModel of FilteredLBModels">
+                <td>{{LBModel.ranking}}</td>
+                <span *ngIf="LBModel.userName;then thenBlock; else elseBlock"></span>
+                <ng-template #thenBlock><td>{{LBModel.userName}}</td></ng-template>
+                <ng-template #elseBlock><td>{{LBModel.name}}</td></ng-template>
+                <td>{{LBModel.averageAcc | displayPercent}}%</td>
+                <td>{{LBModel.averageWPM}}</td>
             </tr>
         </tbody>
     </table>

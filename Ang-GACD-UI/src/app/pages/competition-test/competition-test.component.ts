@@ -1,3 +1,15 @@
+// import { Component, OnInit } from '@angular/core';
+
+
+// export class CompetitionTestComponent implements OnInit {
+
+//   constructor() { }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { State } from 'src/Models/state';
@@ -11,40 +23,48 @@ import { TestModel } from 'src/Models/TestModel';
 
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { Language } from 'src/Models/LanguageEnum';
-import {Router} from "@angular/router";
-import { Interface } from 'readline';
-import { templateJitUrl } from '@angular/compiler';
+import { stringify } from '@angular/compiler/src/util';
+import { Subscription } from 'rxjs';
+import { CompetitionContent } from 'src/Models/CompetitionContentModel';
+import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-competition-test',
+  templateUrl: './competition-test.component.html',
+  styleUrls: ['./competition-test.component.css']
 })
-export class TestComponent implements OnInit {
-  
+export class CompetitionTestComponent implements OnInit {
   
   langSelected(event: number){
     this.category = event;
     this.newTest()
   }
 
-  constructor(public auth: AuthService, private api: RestService, private router:Router) { }
+  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute) { }
 
   ngOnInit(): void{
-    //this.counter.min = 1;
-    //this.counter.sec = 1;
     //place for category
-    this.category=-1;
+    this.sub = this.route.params.subscribe(params => {
+    this.compId = +params['id'];
     this.newTest();
+    });
+    //this.newTest();
+
+    
+    
     document.documentElement.addEventListener('keydown', function (e) {
       if ( ( e.key) == " ") {
           e.preventDefault();
       }
-    }, false);
+  }, false);
     
   }
 
-  testmat: TestMaterial = {author: '', content: '', length: 0,catagoryId: 0};
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  testmat: CompetitionContent = null;
 
   state: State;
   timeTaken: number;
@@ -53,17 +73,15 @@ export class TestComponent implements OnInit {
   skip: boolean;
   category: number;
   categoryName: string;
-  timerFinished: boolean;
-  seconds: number = 0;
-  minutes: number = 0;
+  sub: Subscription;
+  compId: number;
+
 
   newTest(): void{
     let id:number = this.category
     this.categoryName = Language[id]
-    //console.log(this.categoryName)
-    this.timerFinished = false;
+    console.log(this.categoryName)
 
-    // this.testmat.author= '';
 
     this.wpm = 0;
     this.state = {
@@ -83,36 +101,26 @@ export class TestComponent implements OnInit {
     this.expectSpace = false
     this.skip = false
     //get content to type
-    this.api.getTestContentByCatagoryId(id).then(
+    this.api.getCompetitionContent(id).then(
       (obj)=> {
-        this.testmat = obj;
-        //this.testmat.content= obj.content;
-        //this.testmat.author = obj.author;
-        this.state.words = this.testmat.content;
-        this.state.wordarray = this.state.words.split('');
-        this.state.wordarray= this.state.wordarray.filter(this.isBadChar);
-
-        let lines =0;
-        //limit to 500 new line chars
-        for (let index = 0; index < this.state.wordarray.length; index++) {
-          const element = this.state.wordarray[index];
-          if(element == "\n"){
-            lines++;
-          }
-          if(lines > 500){
-            this.state.wordarray = this.state.wordarray.slice(0, index);
-          }
-        }  
-      })
+              this.category = obj.categoryId
+              this.testmat.author = obj.author;
+              this.testmat.id = obj.id
+              this.testmat.testString = obj.testString
+              this.state.words = this.testmat.testString;
+              this.state.wordarray = this.state.words.split('');
+              this.state.wordarray= this.state.wordarray.filter(this.isBadChar)
+            }
+    )
   }
 
   isBadChar(element: string, index: number, array: any) {
     if((element == "\r") || (element == "\t")){
-      return false;
+      return false
     }else{
-      return true;
+      return true
     }
-  } 
+ } 
 
   
   wordsPerMinute (charsTyped: number, ms: number): number {
@@ -126,10 +134,7 @@ export class TestComponent implements OnInit {
     let e = event.key
     if (!this.state.started) {
       this.state.started= true
-      this.state.startTime = new Date()
-      if(this.category != -1){
-        this.startTimer()
-      }
+      this.state.startTime = new Date() 
     }
     let expectedLetter = this.state.wordarray[this.state.letterPosition]
 
@@ -168,8 +173,8 @@ export class TestComponent implements OnInit {
     console.log("giving focus")
     document.getElementById("input-area").focus()
   }
+
   checkIfFinished(): boolean {
-    
     let numletters = this.state.wordarray.length-1   
 
     const wpm = this.wordsPerMinute(this.state.correctchars, new Date().getTime() - this.state.startTime.getTime() )
@@ -178,62 +183,33 @@ export class TestComponent implements OnInit {
     //check if words are done
     if(this.state.letterPosition >= this.state.wordarray.length){ 
       const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
-      this.timeTaken = timeMillis;     
+      this.timeTaken = timeMillis;
+     
       console.log("#errors", this.state.errors)
       this.state.finished = true;
       this.submitResults()
       return true
      
     }
-    if(this.timerFinished){
-      const timeMillis: number = new Date().getTime() - this.state.startTime.getTime()
-      this.timeTaken = timeMillis;     
-      console.log("#errors", this.state.errors)
-      this.state.finished = true;
-      this.submitResults()
-      return true
-    }
-
     return false;
   }
 
   submitResults(){
     console.log("posting test results")
-    let model: TestModel = {
-      categoryId: this.category,
-      numberofcharacters : this.state.correctchars,
+    let model: CompetitionTestResults = {
+      categoryId:this.testmat.categoryId,
+      compId: this.testmat.id,
+      numberofcharacters : this.state.wordarray.length,
       numberoferrors: this.state.errors,
       timetakenms : this.timeTaken,
       wpm: this.wpm,
       date: new Date()
+
     }
     console.log(model)
     this.api.postTestResults(model);
-    this.router.navigate(['./resultimage',this.wpm]).then();
-  }
-
- 
-
-  startTimer() {
-    this.minutes = 1
-    this.seconds = 0 // choose whatever you want
-    let intervalId = setInterval(() => {
-      if (this.seconds - 1 == -1) {
-        this.minutes -= 1;
-        this.seconds = 59
-      } 
-      else this.seconds -= 1
-      if (this.minutes === 0 && this.seconds == 0){
-        this.timerFinished = true;
-        clearInterval(intervalId)
-        this.checkIfFinished()
-      }
-      }, 1000)
   }
 
 
 
 }
-
-
-
