@@ -7,6 +7,8 @@ import { TestMaterial } from 'src/Models/TestMaterial';
 import { CompModel } from 'src/Models/CompModel';
 import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
+import { Usermodel } from 'src/Models/UserModel';
+import { UserNameModel } from 'src/Models/UserNameModel';
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
@@ -53,10 +55,16 @@ export class RestService {
     //need to see if status contains the rank from the competition
     console.log("status code:", status);
   }
-
+  postCompetittion(comp: CompModel){
+    let status = this.http.post(`${env.dev.serverUrl}/api/Competition`, comp);
+    console.log("status code:", status);
+  }
   getCompetitionContent(id: number):Promise<CompetitionContent>{
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();
     
+  }
+  getloggedInUser():Promise<UserNameModel>{
+    return this.http.get<UserNameModel>(`${env.dev.serverUrl}api/User/username}`).toPromise();
   }
 
 }

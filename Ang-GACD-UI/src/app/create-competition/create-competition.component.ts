@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { CompModel } from "src/Models/CompModel";
+import { AuthService } from '@auth0/auth0-angular';
+import { HttpClient } from '@angular/common/http';
+import { RestService } from 'src/Services/rest.service';
+import { UserNameModel } from 'src/Models/UserNameModel';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+@Component({
+  selector: 'app-create-competition',
+  templateUrl: './create-competition.component.html',
+  styleUrls: ['./create-competition.component.css']
+})
+export class CreateCompetitionComponent implements OnInit {
+  UserName: UserNameModel;
+  profileJson: string = null;
+  constructor(public auth: AuthService, private api: RestService) { }
+
+  ngOnInit(): void {
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+    );
+  }
+  CreateCompetition(): void{
+
+    
+    let startDate = new Date();
+    let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+    this.api.getloggedInUser().then(user => this.UserName = user);
+    let newComp: CompModel = 
+    {
+      Start: startDate,
+      End: endDate,
+      Category: 1,
+      Name: document.querySelector<HTMLInputElement>('#name')!.value,
+      snippet: document.querySelector<HTMLInputElement>('#snippet')!.value,
+      author: this.UserName.name
+      
+    };
+    this.api.postCompetittion(newComp);
+  }
+}

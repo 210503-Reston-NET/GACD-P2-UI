@@ -27,6 +27,7 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
+import { CreateCompetitionComponent } from './create-competition/create-competition.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { CompetitionTestComponent } from './pages/competition-test/competition-t
     LeaderboardComponent,
     ViewCompetitionsComponent,
     LangSelectComponent,
-    CompetitionTestComponent
+    CompetitionTestComponent,
+    CreateCompetitionComponent
   ],
   imports: [
     NgbModule,
