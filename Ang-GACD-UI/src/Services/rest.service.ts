@@ -57,7 +57,7 @@ export class RestService {
   }
 
   postCompetitionResults(test: CompetitionTestResults){
-    let status =  this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
+    let status =  this.http.post(`${env.dev.serverUrl}api/CompetitonStats`, test);
     //need to see if status contains the rank from the competition
     console.log("status code:", status);
   }
@@ -66,7 +66,7 @@ export class RestService {
     status.toPromise().then(thing => {console.log(thing)});
   }
   getCompetitionContent(id: number):Promise<CompetitionContent>{
-    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    
+    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}/api/CompetitonStats/${id}`).toPromise();    
   }
   getloggedInUser():Promise<UserNameModel>{
     return this.http.get<UserNameModel>(`${env.dev.serverUrl}api/User/username`).toPromise();

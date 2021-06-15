@@ -75,12 +75,13 @@ export class CompetitionTestComponent implements OnInit {
   categoryName: string;
   sub: Subscription;
   compId: number;
+  author: string;
 
 
   newTest(): void{
-    let id:number = this.category
-    this.categoryName = Language[id]
-    console.log(this.categoryName)
+    //let id:number = this.category
+    //this.categoryName = Language[id]
+    //console.log(this.categoryName)
 
 
     this.wpm = 0;
@@ -101,13 +102,17 @@ export class CompetitionTestComponent implements OnInit {
     this.expectSpace = false
     this.skip = false
     //get content to type
-    this.api.getCompetitionContent(id).then(
+    this.api.getCompetitionContent(this.compId).then(
       (obj)=> {
+              console.log(obj)
               this.category = obj.categoryId
-              this.testmat.author = obj.author;
-              this.testmat.id = obj.id
-              this.testmat.testString = obj.testString
-              this.state.words = this.testmat.testString;
+              this.compId = obj.id
+              this.categoryName = Language[this.category]
+              this.author = obj.author
+              //this.testmat.author = obj.author
+              //this.testmat.id = obj.id
+              this.state.words = obj.testString
+              //this.state.words = this.testmat.testString;
               this.state.wordarray = this.state.words.split('');
               this.state.wordarray= this.state.wordarray.filter(this.isBadChar)
             }
@@ -120,7 +125,7 @@ export class CompetitionTestComponent implements OnInit {
     }else{
       return true
     }
- } 
+  } 
 
   
   wordsPerMinute (charsTyped: number, ms: number): number {
@@ -197,8 +202,8 @@ export class CompetitionTestComponent implements OnInit {
   submitResults(){
     console.log("posting test results")
     let model: CompetitionTestResults = {
-      categoryId:this.testmat.categoryId,
-      compId: this.testmat.id,
+      categoryId:this.category,
+      compId: this.compId,
       numberofcharacters : this.state.wordarray.length,
       numberoferrors: this.state.errors,
       timetakenms : this.timeTaken,
