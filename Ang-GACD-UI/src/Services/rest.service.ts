@@ -43,7 +43,7 @@ export class RestService {
     return this.http.get<TestMaterial>(`${env.dev.serverUrl}api/TypeTest/${id}`).toPromise();
   }
   getCompetitions(): Promise<CompModel[]>{
-    return this.http.get<CompModel[]>(`${env.dev.serverUrl}api/Competitions`).toPromise();
+    return this.http.get<CompModel[]>(`${env.dev.serverUrl}api/Competition`).toPromise();
   }
 
   postTestResults(test: TestModel){

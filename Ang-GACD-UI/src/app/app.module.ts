@@ -26,8 +26,11 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
+import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 import { CreateCompetitionComponent } from './create-competition/create-competition.component';
+import { DisplayPercentPipe } from './pipes/display-percent.pipe';
+import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 
 @NgModule({
@@ -46,8 +49,11 @@ import { CreateCompetitionComponent } from './create-competition/create-competit
     LeaderboardComponent,
     ViewCompetitionsComponent,
     LangSelectComponent,
+    ResultimageComponent,
     CompetitionTestComponent,
-    CreateCompetitionComponent
+    CreateCompetitionComponent,
+    DisplayPercentPipe,
+    DisplayDatePipe
   ],
   imports: [
     NgbModule,
@@ -65,7 +71,7 @@ import { CreateCompetitionComponent } from './create-competition/create-competit
           //`${env.dev.serverUrl}api/test/CodeSnippet/Secret`,
             {
               // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
-              uri: `${env.dev.serverUrl}*`,
+              uri: `${env.dev.serverUrl}api/TypeTest*`,
               tokenOptions: {
                 // The attached token should target this audience
                 audience: env.auth.audience,
@@ -73,7 +79,19 @@ import { CreateCompetitionComponent } from './create-competition/create-competit
                 scope: 'read:current_user',
                 //Authorization: `Bearer ${ this.userToken }`
               }
-            }
+            },
+            // {
+            //   // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+            //   uri: `${env.dev.serverUrl}`,
+            //   tokenOptions: {
+            //     // The attached token should target this audience
+            //     audience: env.auth.audience,
+            //     // The attached token should have these scopes
+            //     scope: 'read:current_user',
+            //     //Authorization: `Bearer ${ this.userToken }`
+            //   }
+            // },
+
         ]
       }
     })
