@@ -7,6 +7,8 @@ import { TestMaterial } from 'src/Models/TestMaterial';
 import { CompModel } from 'src/Models/CompModel';
 import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
+import { StatModel } from 'src/Models/StatModel';
+import { Usermodel } from 'src/Models/UserModel';
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
@@ -61,4 +63,11 @@ export class RestService {
   getCompetitionContent(id: number):Promise<CompetitionContent>{
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    
   }
+  getUserStats(): Promise<StatModel[]>{
+    return this.http.get<StatModel[]>(`${env.dev.serverUrl}api/UserStat/all`).toPromise();
+  }
+  getUserName(): Promise<Usermodel>{
+    return this.http.get<Usermodel>(`${env.dev.serverUrl}api/User/username`).toPromise();
+  }
+
 }
