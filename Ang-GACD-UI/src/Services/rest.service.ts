@@ -66,4 +66,8 @@ export class RestService {
   getCompetitionContent(id: number):Promise<CompetitionContent>{
     return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    
   }
+  getloggedInUser():Promise<UserNameModel>{
+    return this.http.get<UserNameModel>(`${env.dev.serverUrl}api/User/username`).toPromise();
+  }
+
 }

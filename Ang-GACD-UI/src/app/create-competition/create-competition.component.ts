@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { RestService } from 'src/Services/rest.service';
 import { UserNameModel } from 'src/Models/UserNameModel';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 @Component({
   selector: 'app-create-competition',
   templateUrl: './create-competition.component.html',
@@ -22,7 +23,8 @@ export class CreateCompetitionComponent implements OnInit {
   }
   CreateCompetition(): void{
 
-    
+    this.UserName = new UserNameModel;
+    this.UserName.name = "Dummy";
     let startDate = new Date();
     let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
     this.api.getloggedInUser().then(user => this.UserName = user);
@@ -36,6 +38,6 @@ export class CreateCompetitionComponent implements OnInit {
       author: this.UserName.name
       
     };
-    this.api.postCompetittion(newComp);
+    this.api.postCompetition(newComp).then();
   }
 }
