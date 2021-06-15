@@ -36,8 +36,8 @@ export class CreateCompetitionComponent implements OnInit {
       Name: document.querySelector<HTMLInputElement>('#name')!.value,
       snippet: document.querySelector<HTMLInputElement>('#snippet')!.value,
       author: this.UserName.name
-      
     };
+    console.log(newComp.author);
     this.api.postCompetition(newComp);
   }
 }
