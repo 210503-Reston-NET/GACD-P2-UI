@@ -56,7 +56,8 @@ export class CreateCompetitionComponent implements OnInit {
         category: this.category,
         name: this.name,
         snippet: this.snippet,
-        author: this.author
+        author: this.author,
+        compId: null
       };
        //console.log(this.name);
       // console.log(endDate);

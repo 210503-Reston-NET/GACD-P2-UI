@@ -5,4 +5,5 @@ export class CompModel{
     name : string;
     snippet: string;
     author: string;
+    compId: number;
 }

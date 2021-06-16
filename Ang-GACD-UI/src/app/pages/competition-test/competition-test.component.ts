@@ -27,6 +27,7 @@ import { stringify } from '@angular/compiler/src/util';
 import { Subscription } from 'rxjs';
 import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
+import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
 @Component({
   selector: 'app-competition-test',
@@ -72,7 +73,6 @@ export class CompetitionTestComponent implements OnInit {
   expectSpace: boolean;
   skip: boolean;
   category: number;
-  categoryName: string;
   sub: Subscription;
   compId: number;
   author: string;
@@ -107,7 +107,7 @@ export class CompetitionTestComponent implements OnInit {
               console.log(obj)
               this.category = obj.categoryId
               this.compId = obj.id
-              this.categoryName = Language[this.category]
+              //this.categoryName = Language[this.category]
               this.author = obj.author
               //this.testmat.author = obj.author
               //this.testmat.id = obj.id
@@ -212,7 +212,7 @@ export class CompetitionTestComponent implements OnInit {
 
     }
     console.log(model)
-    this.api.postTestResults(model);
+    this.api.postCompetitionResults(model);
   }
 
 

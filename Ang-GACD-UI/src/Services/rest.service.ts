@@ -51,15 +51,16 @@ export class RestService {
   postTestResults(test: TestModel){
     let status = this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
     status.subscribe(
-      (code) => {console.log("status code:", status);} 
+      (code) => {console.log("status code:", code);} 
     )
     //console.log("status code:", status);
   }
 
   postCompetitionResults(test: CompetitionTestResults){
-    let status =  this.http.post(`${env.dev.serverUrl}api/CompetitonStats`, test);
-    //need to see if status contains the rank from the competition
-    console.log("status code:", status);
+    let status =  this.http.post(`${env.dev.serverUrl}api/CompetitonStats`, test)
+    status.subscribe(
+      (code) => {console.log("status code:", code);} 
+    ) 
   }
   postCompetition(comp: CompModel){
     let status = this.http.post(`${env.dev.serverUrl}api/Competition`, comp);
