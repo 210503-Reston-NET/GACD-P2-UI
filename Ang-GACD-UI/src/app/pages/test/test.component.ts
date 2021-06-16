@@ -12,7 +12,7 @@ import { TestModel } from 'src/Models/TestModel';
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { Language } from 'src/Models/LanguageEnum';
 import {Router} from "@angular/router";
-import { Interface } from 'readline';
+//import { Interface } from 'readline';
 import { templateJitUrl } from '@angular/compiler';
 
 @Component({
