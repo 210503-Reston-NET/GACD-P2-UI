@@ -214,7 +214,7 @@ export class CompetitionTestComponent implements OnInit {
     }
     console.log(model)
     this.api.postCompetitionResults(model);
-    this.router.navigate(['./CompetitionTest/',this.compId]).then();
+    this.router.navigate(['./CompetitionResult/',this.compId]).then();
   }
 
 
