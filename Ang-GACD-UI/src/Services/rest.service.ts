@@ -10,6 +10,7 @@ import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
 import { Usermodel } from 'src/Models/UserModel';
 import { UserNameModel } from 'src/Models/UserNameModel';
 import { StatModel } from 'src/Models/StatModel';
+import { CompStatModel } from 'src/Models/CompStatModel';
 
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
@@ -77,5 +78,7 @@ export class RestService {
   getUserName(): Promise<Usermodel>{
     return this.http.get<Usermodel>(`${env.dev.serverUrl}api/User/username`).toPromise();
   }
-
+  getCompetitionResults(id: number): Promise<CompStatModel[]>{
+    return this.http.get<CompStatModel[]>(`${env.dev.serverUrl}api/Competition/${id}`).toPromise();    
+  }
 }

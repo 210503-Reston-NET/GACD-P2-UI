@@ -1,0 +1,22 @@
+<div class = "container">
+    <h1>Competition Results</h1>
+    <button (click)="TakeTest()">Take The Test</button>
+    <table class = "table">
+        <thead>
+            <th>Ranking</th>
+            <th>Username</th>
+            <th>Accuracy</th>
+            <th>WPM</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let CompStatModel of compStatModels">
+                <td>{{CompStatModel.rank}}</td>
+                <span *ngIf="LBModel.userName;then thenBlock; else elseBlock"></span>
+                <ng-template #thenBlock><td>{{CompStatModel.userName}}</td></ng-template>
+                <ng-template #elseBlock><td>{{CompStatModel.name}}</td></ng-template>
+                <td>{{CompStatModel.averageAcc | displayPercent}}%</td>
+                <td>{{CompStatModel.averageWPM}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
