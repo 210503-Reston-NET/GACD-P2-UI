@@ -6,6 +6,9 @@ import { RestService } from 'src/Services/rest.service';
 import { UserNameModel } from 'src/Models/UserNameModel';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
+//import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
+
 @Component({
   selector: 'app-create-competition',
   templateUrl: './create-competition.component.html',
@@ -17,8 +20,13 @@ export class CreateCompetitionComponent implements OnInit {
   snippet: string = '';
   author: string = '';
   name: string;
-  // profileJson: string = null;
-  constructor(public auth: AuthService, private api: RestService) { }
+  compUrl: string;
+  startDate: string;
+  endDate: string;
+  realEndDate: Date;
+  realStartDate: Date;
+
+  constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent) { }
 
   langSelected(event: number){
     this.category = event;
@@ -28,7 +36,16 @@ export class CreateCompetitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = -1;
-    this.newSnippet();   
+    this.realStartDate = new Date()
+    this.startDate = this.realStartDate.toISOString().slice(0, 16);
+
+    
+    this.realEndDate = this.realStartDate;
+    this.realEndDate.setDate(this.realEndDate.getDate()+7)
+    this.endDate = this.realEndDate.toISOString().slice(0, 16);
+    
+    this.newSnippet();
+    
   }
 
   newSnippet(){
@@ -39,31 +56,41 @@ export class CreateCompetitionComponent implements OnInit {
       })
   }
   CreateCompetition(): void{
+    this.realEndDate = new Date(this.endDate);
+    this.realStartDate = new Date(this.startDate);
    
     this.UserName = new UserNameModel;
-    let startDate = new Date();
-    let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+
     this.api.getloggedInUser().then(user => {this.UserName = user
       if(this.UserName.userName){
         this.author = this.UserName.userName
       }else{
         this.author = this.UserName.name
       }
+      if(!this.name){
+        //show error
+        this.snackBar.displayError("Must Include Competition Name");
+        return;
+      }
+
+
       let newComp: CompModel = 
       {
-        start: startDate,
-        end: endDate,
+        start: this.realStartDate,
+        end: this.realEndDate,
         category: this.category,
         name: this.name,
         snippet: this.snippet,
         author: this.author,
         compId: null
       };
-       //console.log(this.name);
-      // console.log(endDate);
-      // console.log(newComp.author);
+
       this.api.postCompetition(newComp);
+      this.snackBar.displaySuccess("Competition Added!");
       }    
     );   
    }
+
+
+   
 }
