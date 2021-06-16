@@ -6,7 +6,6 @@ import { RestService } from 'src/Services/rest.service';
 import { UserNameModel } from 'src/Models/UserNameModel';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
-//import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 
 @Component({
