@@ -37,7 +37,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
-import { CompetitionResultComponent } from './pages/competition-result/competition-result.component'; 
+import { CompetitionResultComponent } from './pages/competition-result/competition-result.component';
+import { DisplayTimePipe } from './pipes/display-time.pipe'; 
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { CompetitionResultComponent } from './pages/competition-result/competiti
     DisplayDatePipe,
     SnackBarComponent,
     DisplayCategoryPipe,
-    CompetitionResultComponent
+    CompetitionResultComponent,
+    DisplayTimePipe
   ],
   imports: [
     NgbModule,
