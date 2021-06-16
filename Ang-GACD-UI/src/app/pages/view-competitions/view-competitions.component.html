@@ -5,14 +5,23 @@
             <th>Name</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th></th>
         </thead>
         <tbody>
-            <tr *ngFor="let model of CompModels;">
-                <td>{{model.category}}</td>
-                <td>{{model.name}}</td>
-                <td>{{model.start | displayDate}}</td>
-                <td>{{model.end | displayDate}}</td>
-            </tr>
+            <ng-container *ngFor="let model of CompModels;" >
+                <tr [routerLink]="['/CompetitionTest',model.compId]">
+                    <td>{{model.category | displayCategory}}</td>
+                    <td>{{model.name}}</td>
+                    <td>{{model.start | displayDate}}</td>
+                    <td>{{model.end | displayDate}}</td>
+                    <td>
+                        <button class="nav-btn"
+                        [routerLink]="['/CompetitionResult',model.compId]">
+                            Results
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>

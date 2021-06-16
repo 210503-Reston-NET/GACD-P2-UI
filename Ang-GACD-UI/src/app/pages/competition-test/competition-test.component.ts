@@ -27,7 +27,9 @@ import { stringify } from '@angular/compiler/src/util';
 import { Subscription } from 'rxjs';
 import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
+import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-competition-test',
   templateUrl: './competition-test.component.html',
@@ -40,7 +42,7 @@ export class CompetitionTestComponent implements OnInit {
     this.newTest()
   }
 
-  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute) { }
+  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void{
     //place for category
@@ -72,7 +74,6 @@ export class CompetitionTestComponent implements OnInit {
   expectSpace: boolean;
   skip: boolean;
   category: number;
-  categoryName: string;
   sub: Subscription;
   compId: number;
   author: string;
@@ -107,7 +108,7 @@ export class CompetitionTestComponent implements OnInit {
               console.log(obj)
               this.category = obj.categoryId
               this.compId = obj.id
-              this.categoryName = Language[this.category]
+              //this.categoryName = Language[this.category]
               this.author = obj.author
               //this.testmat.author = obj.author
               //this.testmat.id = obj.id
@@ -212,7 +213,8 @@ export class CompetitionTestComponent implements OnInit {
 
     }
     console.log(model)
-    this.api.postTestResults(model);
+    this.api.postCompetitionResults(model);
+    this.router.navigate(['./CompetitionResult/',this.compId]).then();
   }
 
 
