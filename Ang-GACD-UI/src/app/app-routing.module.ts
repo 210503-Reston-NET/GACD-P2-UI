@@ -12,6 +12,7 @@ import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component'
 import { ViewCompetitionsComponent } from './pages/view-competitions/view-competitions.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 import { CreateCompetitionComponent } from './create-competition/create-competition.component';
+import { CompetitionResultComponent } from './pages/competition-result/competition-result.component'; 
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
     path: 'NewCompetition',
     component: CreateCompetitionComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'CompetitionResult/:compId',
+    component: CompetitionResultComponent
   }
   
 
