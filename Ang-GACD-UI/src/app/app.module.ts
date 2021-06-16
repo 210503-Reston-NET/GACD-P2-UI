@@ -35,6 +35,7 @@ import { DisplayDatePipe } from './pipes/display-date.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
+import { CompetitionResultComponent } from './pages/competition-result/competition-result.component'; 
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DisplayCategoryPipe } from './pipes/display-category.pipe';
     CreateCompetitionComponent,
     DisplayPercentPipe,
     DisplayDatePipe,
-    DisplayCategoryPipe
+    DisplayCategoryPipe,
+    CompetitionResultComponent
   ],
   imports: [
     NgbModule,

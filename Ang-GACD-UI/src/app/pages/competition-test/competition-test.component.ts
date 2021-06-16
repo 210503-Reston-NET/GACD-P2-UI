@@ -29,6 +29,7 @@ import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
 import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-competition-test',
   templateUrl: './competition-test.component.html',
@@ -41,7 +42,7 @@ export class CompetitionTestComponent implements OnInit {
     this.newTest()
   }
 
-  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute) { }
+  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void{
     //place for category
@@ -213,6 +214,7 @@ export class CompetitionTestComponent implements OnInit {
     }
     console.log(model)
     this.api.postCompetitionResults(model);
+    this.router.navigate(['./CompetitionTest/',this.compId]).then();
   }
 
 
