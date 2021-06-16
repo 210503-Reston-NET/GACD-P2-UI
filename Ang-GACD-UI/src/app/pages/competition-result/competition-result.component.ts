@@ -15,7 +15,7 @@ export class CompetitionResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.compId = Number(this.myRoute.snapshot.params.compId);
-    this.api.getCompetitionResults(this.compId).then(res => {this.compStatModels = res});  
+    this.api.getCompetitionResults(this.compId).then(res => {this.compStatModels = res; console.log(res)});  
   }
 
   TakeTest(): void{
