@@ -40,6 +40,10 @@ import { DisplayCategoryPipe } from './pipes/display-category.pipe';
 import { CompetitionResultComponent } from './pages/competition-result/competition-result.component';
 import { DisplayTimePipe } from './pipes/display-time.pipe';
 import { ProgressGraphComponent } from './components/progress-graph/progress-graph.component'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DatePipe } from '@angular/common';
+
+
 
 
 @NgModule({
@@ -77,6 +81,7 @@ import { ProgressGraphComponent } from './components/progress-graph/progress-gra
     BrowserModule,
     AppRoutingModule,
     MatSnackBarModule,
+    FontAwesomeModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
       clientId: env.auth.clientId,
@@ -147,6 +152,7 @@ import { ProgressGraphComponent } from './components/progress-graph/progress-gra
     BrowserAnimationsModule
   ],
   providers: [
+    DatePipe,
     UserService,
       {
         provide: HTTP_INTERCEPTORS,
