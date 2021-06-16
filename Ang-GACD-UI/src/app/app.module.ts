@@ -33,7 +33,9 @@ import { DisplayPercentPipe } from './pipes/display-percent.pipe';
 import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     CompetitionTestComponent,
     CreateCompetitionComponent,
     DisplayPercentPipe,
-    DisplayDatePipe
+    DisplayDatePipe,
+    SnackBarComponent
   ],
   imports: [
     NgbModule,
@@ -64,6 +67,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    MatSnackBarModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
       clientId: env.auth.clientId,
