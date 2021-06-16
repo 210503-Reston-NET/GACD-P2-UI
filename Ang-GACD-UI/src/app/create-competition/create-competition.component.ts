@@ -25,8 +25,7 @@ export class CreateCompetitionComponent implements OnInit {
   endDate: string;
   realEndDate: Date;
   realStartDate: Date;
-  //snackBar: SnackBarComponent;
-  // profileJson: string = null;
+
   constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent) { }
 
   langSelected(event: number){
@@ -39,7 +38,7 @@ export class CreateCompetitionComponent implements OnInit {
     this.category = -1;
     this.realStartDate = new Date()
     this.startDate = this.realStartDate.toISOString().slice(0, 16);
-    //document.getElementById('comp-start').set
+
     
     this.realEndDate = this.realStartDate;
     this.realEndDate.setDate(this.realEndDate.getDate()+7)
@@ -61,8 +60,7 @@ export class CreateCompetitionComponent implements OnInit {
     this.realStartDate = new Date(this.startDate);
    
     this.UserName = new UserNameModel;
-    //let startDate = new Date();
-    //let endDate = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+
     this.api.getloggedInUser().then(user => {this.UserName = user
       if(this.UserName.userName){
         this.author = this.UserName.userName
@@ -85,11 +83,8 @@ export class CreateCompetitionComponent implements OnInit {
         snippet: this.snippet,
         author: this.author
       };
-       //console.log(this.name);
-      console.log(this.startDate);
-      console.log(this.endDate);
-      // console.log(newComp.author);
-      //this.api.postCompetition(newComp);
+
+      this.api.postCompetition(newComp);
       this.snackBar.displaySuccess("Competition Added!");
       }    
     );   
