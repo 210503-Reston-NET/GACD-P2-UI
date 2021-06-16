@@ -67,7 +67,7 @@
               <label>Category</label>
           </div>
           <div class="col-sm-6">
-              <p>{{statMod.category}}</p>
+              <p>{{statMod.category | displayCategory}}</p>
           </div>
             <div class="col-sm-4">
                 <label>Words Per Minute</label>
@@ -79,7 +79,7 @@
               <label>Average Accuracy</label>
             </div>
             <div class="col-sm-6">
-              <p>{{statMod.averageaccuracy}}</p>
+              <p>{{statMod.averageaccuracy | displayPercent}}%</p>
             </div>
             <div class="col-sm-4">
               <label>Tests Taken</label>
@@ -91,7 +91,7 @@
               <label>Test Time</label>
             </div>
             <div class="col-sm-6">
-              <p>{{statMod.totaltesttime}}</p>
+              <p>{{statMod.totaltesttime | displayTime}}</p>
             </div>
           </div>
           </tr>

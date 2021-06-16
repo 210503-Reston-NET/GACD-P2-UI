@@ -34,8 +34,11 @@ import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
-import { CompetitionResultComponent } from './pages/competition-result/competition-result.component'; 
+import { CompetitionResultComponent } from './pages/competition-result/competition-result.component';
+import { DisplayTimePipe } from './pipes/display-time.pipe'; 
 
 @NgModule({
   declarations: [
@@ -58,8 +61,10 @@ import { CompetitionResultComponent } from './pages/competition-result/competiti
     CreateCompetitionComponent,
     DisplayPercentPipe,
     DisplayDatePipe,
+    SnackBarComponent,
     DisplayCategoryPipe,
-    CompetitionResultComponent
+    CompetitionResultComponent,
+    DisplayTimePipe
   ],
   imports: [
     NgbModule,
@@ -68,6 +73,7 @@ import { CompetitionResultComponent } from './pages/competition-result/competiti
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    MatSnackBarModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
       clientId: env.auth.clientId,

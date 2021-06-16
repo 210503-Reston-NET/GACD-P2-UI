@@ -2,6 +2,16 @@
     <div>Competition Name</div>
     <input type="text" placeholder="Enter competition name" [(ngModel)]= "name">
 </div>
+<div>
+    <label for="comp-start">Competition start:</label><br>
+    <input type="datetime-local" id="comp-start"
+       name="comp-start" [(ngModel)]="startDate" max="{{endDate}}">
+</div>
+<div>
+    <label for="comp-end">Competition end:</label><br>
+    <input type="datetime-local" id="comp-end"
+       name="comp-end" [(ngModel)]="endDate" min="{{startDate}}">
+</div>
 <div class="">
     <div>Category</div>
     <app-lang-select (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
