@@ -7,6 +7,7 @@ import { UserNameModel } from 'src/Models/UserNameModel';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-competition',
@@ -25,7 +26,7 @@ export class CreateCompetitionComponent implements OnInit {
   realEndDate: Date;
   realStartDate: Date;
 
-  constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent) { }
+  constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent, public datePipe:DatePipe) { }
 
   langSelected(event: number){
     this.category = event;
@@ -57,6 +58,9 @@ export class CreateCompetitionComponent implements OnInit {
   CreateCompetition(): void{
     this.realEndDate = new Date(this.endDate);
     this.realStartDate = new Date(this.startDate);
+    
+    // this.datePipe.transform(this.realEndDate, 'yyyy-MM-dd HH:mm:ss');
+    // this.datePipe.transform(this.realStartDate, 'yyyy-MM-dd HH:mm:ss');
    
     this.UserName = new UserNameModel;
 
@@ -81,7 +85,7 @@ export class CreateCompetitionComponent implements OnInit {
         name: this.name,
         snippet: this.snippet,
         author: this.author,
-        compId: null
+        compId: 0
       };
 
       this.api.postCompetition(newComp);
