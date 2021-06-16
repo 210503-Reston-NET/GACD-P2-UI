@@ -38,7 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
 import { CompetitionResultComponent } from './pages/competition-result/competition-result.component';
-import { DisplayTimePipe } from './pipes/display-time.pipe'; 
+import { DisplayTimePipe } from './pipes/display-time.pipe';
+import { ProgressGraphComponent } from './components/progress-graph/progress-graph.component'; 
+
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { DisplayTimePipe } from './pipes/display-time.pipe';
     SnackBarComponent,
     DisplayCategoryPipe,
     CompetitionResultComponent,
-    DisplayTimePipe
+    DisplayTimePipe,
+    ProgressGraphComponent,
   ],
   imports: [
     NgbModule,
@@ -138,9 +141,6 @@ import { DisplayTimePipe } from './pipes/display-time.pipe';
                 //Authorization: `Bearer ${ this.userToken }`
               }
             },
-
-            
-
         ]
       }
     }),

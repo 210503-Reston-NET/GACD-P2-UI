@@ -6,6 +6,7 @@ import { Usermodel } from 'src/Models/UserModel';
 import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 import { DisplayPercentPipe } from 'src/app/pipes/display-percent.pipe';
 import { DisplayTimePipe } from 'src/app/pipes/display-time.pipe';
+import { ProgressGraphComponent } from 'src/app/components/progress-graph/progress-graph.component';
 
 @Component({
   selector: 'app-profile',
@@ -33,8 +34,8 @@ export class ProfileComponent implements OnInit {
     
   }
 
-  UserInfo: Usermodel;
-  statOb: StatModel[];
+  UserInfo: Usermodel = new Usermodel();
+  statOb: StatModel[] = [];
   
   getUser():void{
     this.api.getUserName().then(
