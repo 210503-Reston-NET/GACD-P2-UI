@@ -11,11 +11,11 @@
         <tbody>
             <tr *ngFor="let CompStatModel of compStatModels">
                 <td>{{CompStatModel.rank}}</td>
-                <span *ngIf="LBModel.userName;then thenBlock; else elseBlock"></span>
+                <span *ngIf="CompStatModel.userName;then thenBlock; else elseBlock"></span>
                 <ng-template #thenBlock><td>{{CompStatModel.userName}}</td></ng-template>
                 <ng-template #elseBlock><td>{{CompStatModel.name}}</td></ng-template>
-                <td>{{CompStatModel.averageAcc | displayPercent}}%</td>
-                <td>{{CompStatModel.averageWPM}}</td>
+                <td>{{CompStatModel.accuracy| displayPercent}}%</td>
+                <td>{{CompStatModel.wpm}}</td>
             </tr>
         </tbody>
     </table>
