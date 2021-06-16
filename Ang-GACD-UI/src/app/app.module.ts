@@ -34,6 +34,7 @@ import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
 import { CompetitionResultComponent } from './pages/competition-result/competition-result.component'; 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { CompetitionResultComponent } from './pages/competition-result/competiti
     CreateCompetitionComponent,
     DisplayPercentPipe,
     DisplayDatePipe,
+    DisplayCategoryPipe,
     CompetitionResultComponent
   ],
   imports: [
@@ -119,6 +121,19 @@ import { CompetitionResultComponent } from './pages/competition-result/competiti
                 //Authorization: `Bearer ${ this.userToken }`
               }
             },
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}api/CompetitonStats`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            },
+
+            
 
         ]
       }

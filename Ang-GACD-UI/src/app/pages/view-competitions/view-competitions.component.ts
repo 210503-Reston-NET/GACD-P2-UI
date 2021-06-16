@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompModel } from 'src/Models/CompModel';
 import { RestService } from 'src/Services/rest.service';
 import { DisplayDatePipe } from 'src/app/pipes/display-date.pipe';
+import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
 @Component({
   selector: 'app-view-competitions',
@@ -16,7 +17,7 @@ export class ViewCompetitionsComponent implements OnInit {
   ngOnInit(): void {
     this.api.getCompetitions().then(res => {
         this.CompModels = res
-        console.log(res)
+        //console.log(res)
         this.CurrentCompModels = this.CompModels.filter((CompModel)=>((CompModel.end) < new Date()));
       });    
   }
