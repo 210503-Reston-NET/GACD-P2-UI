@@ -2,6 +2,29 @@
     height: fit-content;
 } */
 
+.pop-menu_container-active {
+    pointer-events: auto;
+}
+
+.pop-menu_container::before {
+    content: '';
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: opacity 300ms linear;
+    will-change: opacity;
+}
+
+.pop-menu_container-active::before {
+    opacity: 0.3;
+}
+
+
+
 .profile-image_container {
     grid-area: image;
     margin-right: 0.5rem;
@@ -63,7 +86,7 @@
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 255, 0.2);
 }
 /*pop out menu header*/
-.menu-body {
+.menu-body { 
     display: grid;
     width: 100%;
 }
@@ -91,11 +114,7 @@
 
 /*pop out button*/
 .nav-btn{
-    border: none;
-    background-color:transparent;
-    color: black;
-    font-size: 30px;
-    transition-duration: 0.4s;
+    
 }
 .nav-btn:hover{ 
     color: #a318ff ;
