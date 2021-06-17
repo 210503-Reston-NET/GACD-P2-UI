@@ -63,6 +63,13 @@
     <textarea id=" " name="input" [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
 </div> -->
 <button class="kwik-btn" *ngIf="testmat" (click)="newTest()" >New Test</button>
+<div *ngIf="state.finished">
+    <div class = "container">
+        <h1>{{result.text}}</h1>
+        <img src = 'assets/images/{{result.image}}.jpg'>
+    </div>
+</div>
+
 <!-- <div>
     <h1>Author: {{ testmat.author }}</h1>
     <h1 *ngIf="testmat">{{ testmat.content }}</h1>
