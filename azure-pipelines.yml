@@ -25,6 +25,7 @@ steps:
 
 #Test
 - script: |
+    cd Ang-GACD-UI
     which chromium
     which chrome
     ls
