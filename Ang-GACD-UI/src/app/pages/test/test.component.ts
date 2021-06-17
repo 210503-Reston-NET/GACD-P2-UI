@@ -14,6 +14,7 @@ import { Language } from 'src/Models/LanguageEnum';
 import {Router} from "@angular/router";
 //import { Interface } from 'readline';
 import { templateJitUrl } from '@angular/compiler';
+import { ResultModel } from 'src/Models/ResultModel';
 
 @Component({
   selector: 'app-test',
@@ -34,6 +35,10 @@ export class TestComponent implements OnInit {
     //this.counter.min = 1;
     //this.counter.sec = 1;
     //place for category
+    this.result = {
+      text : "Keep working at typing!",
+      image :"slow"
+    };
     this.category=-1;
     this.newTest();
     document.documentElement.addEventListener('keydown', function (e) {
@@ -56,7 +61,8 @@ export class TestComponent implements OnInit {
   timerFinished: boolean;
   seconds: number = 0;
   minutes: number = 0;
-
+  result : ResultModel;
+  
   newTest(): void{
     let id:number = this.category
     this.categoryName = Language[id]
@@ -209,7 +215,19 @@ export class TestComponent implements OnInit {
     }
     console.log(model)
     this.api.postTestResults(model);
-    this.router.navigate(['./resultimage',this.wpm]).then();
+    if(this.wpm<30){
+      this.result.text = "Keep working at typing!";
+      this.result.image = "slow";
+    }
+    else if (this.wpm<50&&this.wpm>30){
+      this.result.text = "You're improving!";
+      this.result.image = "good";
+    }
+    else if (this.wpm>50){
+      this.result.text= "You're a programming genius!";
+      this.result.image = "pro";
+    }
+    //this.router.navigate(['./resultimage',this.wpm]).then();
   }
 
  
