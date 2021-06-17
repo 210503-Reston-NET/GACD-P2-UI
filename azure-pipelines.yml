@@ -25,10 +25,8 @@ steps:
 
 #Test
 - script: |
-    cd Ang-GACD-UI
-    which google-chrome
+    cd Ang-GACD-UI   
     export CHROME_BIN=$(which google-chrome)
-    echo $CHROME_BIN
     npx ng test --browsers ChromeHeadlessNoSandbox --watch=false --karmaConfig karma.conf.js --code-coverage
 
   displayName: "Running Tests"
