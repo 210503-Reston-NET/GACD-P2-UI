@@ -26,6 +26,7 @@ export class CreateCompetitionComponent implements OnInit {
   endDate: string;
   realEndDate: Date;
   realStartDate: Date;
+  compId : number = null;
 
   constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent, public datePipe:DatePipe, private router: Router) { }
 
@@ -44,11 +45,6 @@ export class CreateCompetitionComponent implements OnInit {
     this.startDate = this.realStartDate.toISOString().slice(0,16)
     this.realEndDate = this.realStartDate;
     
-    
-   
-    
-    //this.realEndDate.setDate(this.realEndDate.getDate()+7)
-    //this.realEndDate.setMinutes(this.realEndDate.getMinutes() - this.realEndDate.getTimezoneOffset());
     this.realEndDate.setDate(this.realEndDate.getDate() +7)
     this.endDate = this.realEndDate.toISOString().slice(0, 16);
 
@@ -71,23 +67,15 @@ export class CreateCompetitionComponent implements OnInit {
       })
   }
   CreateCompetition(): void{
-    console.log("finished start date:", this.startDate)
-    console.log("finished end date:", this.endDate)
+   
     
     this.realEndDate = new Date(this.endDate);
     this.realStartDate = new Date(this.startDate);
-
-    
-    // var utc = new Date(this.realEndDate.getTime() + this.realEndDate.getTimezoneOffset() * 60000);
-    // console.log(utc)
 
     console.log("after conv")
     console.log( this.realStartDate)
     console.log(this.realEndDate)
     
-    
-    // this.datePipe.transform(this.realEndDate, 'yyyy-MM-dd HH:mm:ss');
-    // this.datePipe.transform(this.realStartDate, 'yyyy-MM-dd HH:mm:ss');
    
     this.UserName = new UserNameModel;
 
@@ -115,7 +103,7 @@ export class CreateCompetitionComponent implements OnInit {
         compId: 0
       };
 
-      this.api.postCompetition(newComp);
+      this.compId = this.api.postCompetition(newComp);
       this.snackBar.displaySuccess("Competition Added!");
       this.router.navigate(['./competitions']).then();
       }    
