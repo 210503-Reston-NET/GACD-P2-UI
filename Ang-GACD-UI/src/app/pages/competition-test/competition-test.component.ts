@@ -29,6 +29,7 @@ import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
 import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
+
 import {Router} from "@angular/router";
 @Component({
   selector: 'app-competition-test',
@@ -36,7 +37,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./competition-test.component.css']
 })
 export class CompetitionTestComponent implements OnInit {
-  
+ 
   langSelected(event: number){
     this.category = event;
     this.newTest()
@@ -47,8 +48,8 @@ export class CompetitionTestComponent implements OnInit {
   ngOnInit(): void{
     //place for category
     this.sub = this.route.params.subscribe(params => {
-    this.compId = +params['id'];
-    this.newTest();
+      this.compId = +params['id'];
+      this.newTest();
     });
     //this.newTest();
 
