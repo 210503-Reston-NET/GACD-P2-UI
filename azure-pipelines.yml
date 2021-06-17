@@ -24,6 +24,13 @@ steps:
   displayName: 'npm install and build'
 
 #Test
+- script: |
+    which chromium
+    which chrome
+    ls
+    npx ng test --browsers ChromeHeadless --watch=false --karmaConfig karma.conf.js --code-coverage
+
+  displayName: "Running Tests"
 
 #Deploy
 - task: AzureRmWebAppDeployment@4
