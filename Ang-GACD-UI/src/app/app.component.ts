@@ -11,7 +11,7 @@ import { TestService } from 'src/Services/Test.Service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showMenu = false;
+  
   title = 'Kwik-Koder';
   darkModeActive: boolean;
 
@@ -28,9 +28,7 @@ export class AppComponent {
     );
   }
 
-  displayMenu(){
-    this.showMenu = !this.showMenu;
-  }
+  
 
 
   GenerateUsers()
