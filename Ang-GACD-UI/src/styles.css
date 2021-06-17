@@ -215,7 +215,6 @@
     width: 100%;
     }
 }
-<<<<<<< Updated upstream
 
 .nav-btn{   
     margin: .2em;
@@ -224,7 +223,7 @@
     background-color: black;
     border-radius: 20px;
     box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
-=======
+}
 /*pop out menu footer*/
 .main_footer {
     background: transparent;
@@ -232,7 +231,6 @@
     bottom: 1rem;
     left: 1.5rem;
     z-index: 100;
->>>>>>> Stashed changes
 }
 
 .kwik-btn{

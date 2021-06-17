@@ -26,9 +26,7 @@
                 <h5>Rank: Mega Coder</h5>
             </div>
           </div>
-          <div class="col-md-6">
-            <app-progress-graph></app-progress-graph>
-          </div>
+          
   </div>
   <div class="row">
   <div class="col-md-4"></div>
@@ -36,6 +34,18 @@
     <mat-tab-group class="tab-bar" animationDuration="1500ms">
       <mat-tab class="info" label="Info">
         <div class="row">
+          <div class="col-sm-4">
+            <label>User ID</label>
+        </div>
+        <div class="col-sm-6">
+            <p>{{UserInfo.userId}}</p>
+        </div>
+        <div class="col-sm-4">
+          <label>RevaPoints</label>
+      </div>
+      <div class="col-sm-6">
+          <p>{{UserInfo.revapoints}}</p>
+      </div>
           <div class="col-sm-4">
               <label>User Name</label>
           </div>
@@ -99,6 +109,11 @@
           </div>
           </tr>
       </mat-tab>
+      <mat-tab label="Progress">
+        <ng-template matTabContent>
+        <app-progress-graph></app-progress-graph>
+        </ng-template>
+    </mat-tab>
     </mat-tab-group>
     </div>
   </div>

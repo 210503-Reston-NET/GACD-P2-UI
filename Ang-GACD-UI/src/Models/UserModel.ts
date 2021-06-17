@@ -1,5 +1,6 @@
 export class Usermodel {
-    userName : string;
+    username : string;
     name : string;
-    
+    revapoints : number;
+    userId : number;
 }
