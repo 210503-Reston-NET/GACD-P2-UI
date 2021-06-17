@@ -25,6 +25,7 @@ export class CreateCompetitionComponent implements OnInit {
   endDate: string;
   realEndDate: Date;
   realStartDate: Date;
+  compId : number = null;
 
   constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent, public datePipe:DatePipe) { }
 
@@ -114,7 +115,7 @@ export class CreateCompetitionComponent implements OnInit {
         compId: 0
       };
 
-      this.api.postCompetition(newComp);
+      this.compId = this.api.postCompetition(newComp);
       this.snackBar.displaySuccess("Competition Added!");
       }    
     );   

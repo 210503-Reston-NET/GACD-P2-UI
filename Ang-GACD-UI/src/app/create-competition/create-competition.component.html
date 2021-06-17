@@ -21,5 +21,8 @@
     <div>Snippet:</div>
     <pre contenteditable="true" [(ngModel)]="snippet" class="text-light bg-dark p-1" ngDefaultControl>{{snippet}}</pre>
 </div>
-<button type="button" value="create" (click)="CreateCompetition()">Create</button>
+<button type="button" value="create" (click)="CreateCompetition()">Create</button>{{compId}}
+<div *ngIf="compId">
+    <span>Competition Link:</span><a href="https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}">https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}</a>
+</div>
 
