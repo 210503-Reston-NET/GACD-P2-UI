@@ -10,6 +10,8 @@ import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
 import { Usermodel } from 'src/Models/UserModel';
 import { UserNameModel } from 'src/Models/UserNameModel';
 import { StatModel } from 'src/Models/StatModel';
+import { CompStatModel } from 'src/Models/CompStatModel';
+import { ProgressGraphData } from 'src/Models/ProgressGraphData';
 
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
@@ -51,22 +53,23 @@ export class RestService {
   postTestResults(test: TestModel){
     let status = this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
     status.subscribe(
-      (code) => {console.log("status code:", status);} 
+      (code) => {console.log("status code:", code);} 
     )
     //console.log("status code:", status);
   }
 
   postCompetitionResults(test: CompetitionTestResults){
-    let status =  this.http.post(`${env.dev.serverUrl}api/TypeTest`, test);
-    //need to see if status contains the rank from the competition
-    console.log("status code:", status);
+    let status =  this.http.post(`${env.dev.serverUrl}api/CompetitonStats`, test)
+    status.subscribe(
+      (code) => {console.log("status code:", code);} 
+    ) 
   }
   postCompetition(comp: CompModel){
     let status = this.http.post(`${env.dev.serverUrl}api/Competition`, comp);
     status.toPromise().then(thing => {console.log(thing)});
   }
   getCompetitionContent(id: number):Promise<CompetitionContent>{
-    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}api/CompetitionStats/${id}`).toPromise();    
+    return this.http.get<CompetitionContent>(`${env.dev.serverUrl}/api/CompetitonStats/${id}`).toPromise();    
   }
   getloggedInUser():Promise<UserNameModel>{
     return this.http.get<UserNameModel>(`${env.dev.serverUrl}api/User/username`).toPromise();
@@ -77,5 +80,10 @@ export class RestService {
   getUserName(): Promise<Usermodel>{
     return this.http.get<Usermodel>(`${env.dev.serverUrl}api/User/username`).toPromise();
   }
-
+  getCompetitionResults(id: number): Promise<CompStatModel[]>{
+    return this.http.get<CompStatModel[]>(`${env.dev.serverUrl}api/Competition/${id}`).toPromise();    
+  }
+  getProgressResults(): Promise<ProgressGraphData[]>{
+    return this.http.get<ProgressGraphData[]>(`${env.dev.serverUrl}api/UserStat/tests`).toPromise();
+  } 
 }

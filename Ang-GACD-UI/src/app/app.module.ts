@@ -33,7 +33,18 @@ import { DisplayPercentPipe } from './pipes/display-percent.pipe';
 import { DisplayDatePipe } from './pipes/display-date.pipe';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { DisplayCategoryPipe } from './pipes/display-category.pipe'; 
+import { CompetitionResultComponent } from './pages/competition-result/competition-result.component';
+import { DisplayTimePipe } from './pipes/display-time.pipe';
+import { ProgressGraphComponent } from './components/progress-graph/progress-graph.component'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DatePipe } from '@angular/common';
+
+
+
 
 @NgModule({
   declarations: [
@@ -55,7 +66,12 @@ import { MatTabsModule } from '@angular/material/tabs';
     CompetitionTestComponent,
     CreateCompetitionComponent,
     DisplayPercentPipe,
-    DisplayDatePipe
+    DisplayDatePipe,
+    SnackBarComponent,
+    DisplayCategoryPipe,
+    CompetitionResultComponent,
+    DisplayTimePipe,
+    ProgressGraphComponent,
   ],
   imports: [
     NgbModule,
@@ -64,6 +80,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    MatSnackBarModule,
+    FontAwesomeModule,
     AuthModule.forRoot({
       domain: env.auth.domain,
       clientId: env.auth.clientId,
@@ -117,13 +135,24 @@ import { MatTabsModule } from '@angular/material/tabs';
                 //Authorization: `Bearer ${ this.userToken }`
               }
             },
-
+            {
+              // Match any request that starts 'https://kwikkoder.us.auth0.com/api/v2/' (note the asterisk)
+              uri: `${env.dev.serverUrl}api/CompetitonStats`,
+              tokenOptions: {
+                // The attached token should target this audience
+                audience: env.auth.audience,
+                // The attached token should have these scopes
+                scope: 'read:current_user',
+                //Authorization: `Bearer ${ this.userToken }`
+              }
+            },
         ]
       }
     }),
     BrowserAnimationsModule
   ],
   providers: [
+    DatePipe,
     UserService,
       {
         provide: HTTP_INTERCEPTORS,

@@ -27,26 +27,29 @@ import { stringify } from '@angular/compiler/src/util';
 import { Subscription } from 'rxjs';
 import { CompetitionContent } from 'src/Models/CompetitionContentModel';
 import { CompetitionTestResults } from 'src/Models/CompetitionTestResults';
+import { DisplayCategoryPipe } from 'src/app/pipes/display-category.pipe';
 
+
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-competition-test',
   templateUrl: './competition-test.component.html',
   styleUrls: ['./competition-test.component.css']
 })
 export class CompetitionTestComponent implements OnInit {
-  
+ 
   langSelected(event: number){
     this.category = event;
     this.newTest()
   }
 
-  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute) { }
+  constructor(public auth: AuthService, private api: RestService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void{
     //place for category
     this.sub = this.route.params.subscribe(params => {
-    this.compId = +params['id'];
-    this.newTest();
+      this.compId = +params['id'];
+      this.newTest();
     });
     //this.newTest();
 
@@ -72,15 +75,15 @@ export class CompetitionTestComponent implements OnInit {
   expectSpace: boolean;
   skip: boolean;
   category: number;
-  categoryName: string;
   sub: Subscription;
   compId: number;
+  author: string;
 
 
   newTest(): void{
-    let id:number = this.category
-    this.categoryName = Language[id]
-    console.log(this.categoryName)
+    //let id:number = this.category
+    //this.categoryName = Language[id]
+    //console.log(this.categoryName)
 
 
     this.wpm = 0;
@@ -101,13 +104,17 @@ export class CompetitionTestComponent implements OnInit {
     this.expectSpace = false
     this.skip = false
     //get content to type
-    this.api.getCompetitionContent(id).then(
+    this.api.getCompetitionContent(this.compId).then(
       (obj)=> {
+              console.log(obj)
               this.category = obj.categoryId
-              this.testmat.author = obj.author;
-              this.testmat.id = obj.id
-              this.testmat.testString = obj.testString
-              this.state.words = this.testmat.testString;
+              this.compId = obj.id
+              //this.categoryName = Language[this.category]
+              this.author = obj.author
+              //this.testmat.author = obj.author
+              //this.testmat.id = obj.id
+              this.state.words = obj.testString
+              //this.state.words = this.testmat.testString;
               this.state.wordarray = this.state.words.split('');
               this.state.wordarray= this.state.wordarray.filter(this.isBadChar)
             }
@@ -120,7 +127,7 @@ export class CompetitionTestComponent implements OnInit {
     }else{
       return true
     }
- } 
+  } 
 
   
   wordsPerMinute (charsTyped: number, ms: number): number {
@@ -197,8 +204,8 @@ export class CompetitionTestComponent implements OnInit {
   submitResults(){
     console.log("posting test results")
     let model: CompetitionTestResults = {
-      categoryId:this.testmat.categoryId,
-      compId: this.testmat.id,
+      categoryId:this.category,
+      compId: this.compId,
       numberofcharacters : this.state.wordarray.length,
       numberoferrors: this.state.errors,
       timetakenms : this.timeTaken,
@@ -207,7 +214,8 @@ export class CompetitionTestComponent implements OnInit {
 
     }
     console.log(model)
-    this.api.postTestResults(model);
+    this.api.postCompetitionResults(model);
+    this.router.navigate(['./CompetitionResult/',this.compId]).then();
   }
 
 
