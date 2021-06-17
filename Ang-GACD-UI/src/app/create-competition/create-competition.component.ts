@@ -8,6 +8,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LangSelectComponent } from 'src/app/components/lang-select/lang-select.component';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-competition',
@@ -26,7 +27,7 @@ export class CreateCompetitionComponent implements OnInit {
   realEndDate: Date;
   realStartDate: Date;
 
-  constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent, public datePipe:DatePipe) { }
+  constructor(public auth: AuthService, private api: RestService, public snackBar: SnackBarComponent, public datePipe:DatePipe, private router: Router) { }
 
   langSelected(event: number){
     this.category = event;
@@ -116,6 +117,7 @@ export class CreateCompetitionComponent implements OnInit {
 
       this.api.postCompetition(newComp);
       this.snackBar.displaySuccess("Competition Added!");
+      this.router.navigate(['./competitions']).then();
       }    
     );   
    }
