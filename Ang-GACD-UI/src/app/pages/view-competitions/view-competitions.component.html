@@ -8,7 +8,7 @@
             <th></th>
         </thead>
         <tbody>
-            <ng-container *ngFor="let model of CompModels;" >
+            <ng-container *ngFor="let model of CurrentCompModels;" >
                 <tr [routerLink]="['/CompetitionTest',model.compId]" class="hover-highlight">
                     <td class="opac">{{model.category | displayCategory}}</td>
                     <td class="opac">{{model.name}}</td>
