@@ -25,6 +25,14 @@ steps:
 
 #Test
 
+- script: |
+    cd Ang-GACD-UI   
+    export CHROME_BIN=$(which google-chrome)
+    npx ng test --browsers ChromeHeadlessNoSandbox --watch=false --karmaConfig karma.conf.js --code-coverage
+  
+  displayName: "Running Tests"
+  continueOnError: True
+
 #Deploy
 - task: AzureRmWebAppDeployment@4
   inputs:

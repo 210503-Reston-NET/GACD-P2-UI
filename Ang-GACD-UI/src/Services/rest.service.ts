@@ -12,7 +12,7 @@ import { UserNameModel } from 'src/Models/UserNameModel';
 import { StatModel } from 'src/Models/StatModel';
 import { CompStatModel } from 'src/Models/CompStatModel';
 import { ProgressGraphData } from 'src/Models/ProgressGraphData';
-
+import { BetInputModel } from 'src/Models/BetInputModel';
 //import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
@@ -89,5 +89,17 @@ export class RestService {
   }
   getProgressResults(): Promise<ProgressGraphData[]>{
     return this.http.get<ProgressGraphData[]>(`${env.dev.serverUrl}api/UserStat/tests`).toPromise();
-  } 
+  }
+  putBet(bet : BetInputModel):void{
+    let status =  this.http.put(`${env.dev.serverUrl}api/Competition/bet`, bet)
+    status.subscribe(
+      (code) => {console.log("status code:", code);} 
+    ) 
+  }
+  ClaimBets(id: number):void{
+    let status =  this.http.put(`${env.dev.serverUrl}api/Competition/bet/${id}`,id)
+    status.subscribe(
+      (code) => {console.log("status code:", code);} 
+    ) 
+  }
 }
