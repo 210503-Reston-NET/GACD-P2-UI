@@ -29,7 +29,7 @@ steps:
     which google-chrome
     export CHROME_BIN=$(which google-chrome)
     echo $CHROME_BIN
-    npx ng test --browsers ChromeHeadless --watch=false --karmaConfig karma.conf.js --code-coverage
+    npx ng test --browsers ChromeHeadless --no-sandbox --watch=false --karmaConfig karma.conf.js --code-coverage
 
   displayName: "Running Tests"
 
