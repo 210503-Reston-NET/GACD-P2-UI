@@ -4,4 +4,5 @@ export class CompStatModel{
     userName : string;
     accuracy : number;
     name : string;
+    userId : number;
 }

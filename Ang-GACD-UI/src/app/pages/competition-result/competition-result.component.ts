@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompStatModel } from 'src/Models/CompStatModel';
+import { BetInputModel } from 'src/Models/BetInputModel';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RestService } from 'src/Services/rest.service';
 import {Router} from "@angular/router";
@@ -26,5 +27,13 @@ export class CompetitionResultComponent implements OnInit {
 
   TakeTest(): void{
     this.router.navigate(['./CompetitionTest/',this.compId]).then();
+  }
+  PlaceBet(id : number): void {
+    let bet : BetInputModel = {
+      userBetOn : id,
+      compId : this.compId,
+      betAmount : 100
+    }
+    this.api.putBet(bet);
   }
 }
