@@ -26,7 +26,9 @@ steps:
 #Test
 - script: |
     cd Ang-GACD-UI
-    export CHROME_BIN=/snap/bin/chromium
+    which chrome
+    export CHROME_BIN=$(which chrome)
+    echo CHROME_BIN
     npx ng test --browsers ChromeHeadless --watch=false --karmaConfig karma.conf.js --code-coverage
 
   displayName: "Running Tests"
