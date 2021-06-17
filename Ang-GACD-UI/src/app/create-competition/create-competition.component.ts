@@ -37,16 +37,30 @@ export class CreateCompetitionComponent implements OnInit {
   ngOnInit(): void {
     this.category = -1;
     this.realStartDate = new Date()
-    this.startDate = this.realStartDate.toISOString().slice(0, 16);
-
-    
     this.realEndDate = this.realStartDate;
-    this.realEndDate.setDate(this.realEndDate.getDate()+7)
+
+    this.realStartDate.setMinutes(this.realStartDate.getMinutes() - this.realStartDate.getTimezoneOffset());
+    this.startDate = this.realStartDate.toISOString().slice(0,16)
+    this.realEndDate = this.realStartDate;
+    
+    
+   
+    
+    //this.realEndDate.setDate(this.realEndDate.getDate()+7)
+    //this.realEndDate.setMinutes(this.realEndDate.getMinutes() - this.realEndDate.getTimezoneOffset());
+    this.realEndDate.setDate(this.realEndDate.getDate() +7)
     this.endDate = this.realEndDate.toISOString().slice(0, 16);
+
+
+    console.log("startDate: ", this.startDate)
+    console.log("endDate", this.endDate)
+    console.log("realstartDate: ", this.realStartDate)
+    console.log("realendDate", this.realEndDate)
     
     this.newSnippet();
     
   }
+
 
   newSnippet(){
     this.api.getTestContentByCatagoryId(this.category).then(
@@ -56,8 +70,20 @@ export class CreateCompetitionComponent implements OnInit {
       })
   }
   CreateCompetition(): void{
+    console.log("finished start date:", this.startDate)
+    console.log("finished end date:", this.endDate)
+    
     this.realEndDate = new Date(this.endDate);
     this.realStartDate = new Date(this.startDate);
+
+    
+    // var utc = new Date(this.realEndDate.getTime() + this.realEndDate.getTimezoneOffset() * 60000);
+    // console.log(utc)
+
+    console.log("after conv")
+    console.log( this.realStartDate)
+    console.log(this.realEndDate)
+    
     
     // this.datePipe.transform(this.realEndDate, 'yyyy-MM-dd HH:mm:ss');
     // this.datePipe.transform(this.realStartDate, 'yyyy-MM-dd HH:mm:ss');
@@ -93,6 +119,8 @@ export class CreateCompetitionComponent implements OnInit {
       }    
     );   
    }
+
+   
 
 
    
