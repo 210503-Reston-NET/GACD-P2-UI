@@ -49,6 +49,8 @@ export class ProfileComponent implements OnInit {
   
   claimBets(id: number): void{
     this.api.ClaimBets(id);
+    this.api.getUserName().then(
+      (obj)=> {this.UserInfo = obj;})
   }
     
 
