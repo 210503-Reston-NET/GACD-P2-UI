@@ -6,6 +6,7 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-md-2"></div>
         <div class="col-md-4">
           <div class="profile-img">
               <img
@@ -13,23 +14,19 @@
               alt="User's profile picture"
               class="rounded-circle img-fluid profile-picture"
               />
-              <div class="file btn btn-lg btn-primary">
-                Change Picture
-                <input type="file" name="file"/>
-              </div>
           </div>
         </div>
           <div class="col-md-2">
-            <div class="main-body">
-                <h4>{{ UserInfo.name }}</h4>
-                <h5>{{ user.email }}</h5>
-                <h5>Rank: Mega Coder</h5>
+            <div class="profile-head">
+                <h2>{{ UserInfo.name }}</h2>
+                <h3>{{ user.email }}</h3>
+                <h4>Rank: Mega Coder</h4>
             </div>
           </div>
-          
+       <div class="col-md-4"></div>   
   </div>
   <div class="row">
-  <div class="col-md-4"></div>
+  <div class="col-md-2"></div>
   <div class="col-md-8">
     <mat-tab-group class="tab-bar" animationDuration="1500ms">
       <mat-tab class="info" label="Info">
