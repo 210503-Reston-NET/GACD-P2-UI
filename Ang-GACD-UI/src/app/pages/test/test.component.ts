@@ -5,7 +5,6 @@ import { TestMaterial } from 'src/Models/TestMaterial';
 import { RestService } from 'src/Services/rest.service';
 
 import { Usermodel } from 'src/Models/UserModel';
-import {UserService} from 'src/Services/User.service';
 import { AppComponent } from 'src/app/app.component';
 import { TestModel } from 'src/Models/TestModel';
 
