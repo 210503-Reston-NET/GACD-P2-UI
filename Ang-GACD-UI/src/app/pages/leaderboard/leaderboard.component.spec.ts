@@ -8,7 +8,7 @@ describe('LeaderboardComponent', () => {
   let service: RestService;
   class MockRestService
   {
-    getLeaderBoardByCatagoryId(id: number){};
+    getLeaderBoardByCatagoryId(){};
   }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
