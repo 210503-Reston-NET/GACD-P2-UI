@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { UserService } from "../Services/User.service";
 import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +24,6 @@ import { ViewCompetitionsComponent } from './pages/view-competitions/view-compet
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LangSelectComponent } from './components/lang-select/lang-select.component';
-import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 import { CompetitionTestComponent } from './pages/competition-test/competition-test.component';
 import { CreateCompetitionComponent } from './create-competition/create-competition.component';
 import { DisplayPercentPipe } from './pipes/display-percent.pipe';
@@ -60,7 +58,6 @@ import { DatePipe } from '@angular/common';
     LeaderboardComponent,
     ViewCompetitionsComponent,
     LangSelectComponent,
-    ResultimageComponent,
     CompetitionTestComponent,
     CreateCompetitionComponent,
     DisplayPercentPipe,
@@ -172,7 +169,6 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     DatePipe,
-    UserService,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: AuthHttpInterceptor,

@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
-import { ApitestComponent } from './pages/apitest/apitest.component';
 import { TestComponent } from 'src/app/pages/test/test.component';
-import { ResultimageComponent } from './pages/resultimage/resultimage.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
@@ -26,11 +24,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'apitest',
-    component: ApitestComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'test',
     component: TestComponent,
     canActivate: [AuthGuard]
@@ -42,10 +35,6 @@ const routes: Routes = [
   {
     path: 'competitions',
     component: ViewCompetitionsComponent
-  },
-  {
-    path: 'resultimage/:wpm',
-    component: ResultimageComponent
   },
   { 
     path: 'CompetitionTest/:id',

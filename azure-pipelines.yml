@@ -14,9 +14,25 @@ steps:
     versionSpec: '14.x'
   displayName: 'Install Node.js'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar-cloud-kwik'
+    organization: '210503-reston-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210503-Reston-NET_GACD-P2-UI'
+    projectName: 'GACD-P2-UI'
+    extraProperties: |
+      sonar.sourceEncoding=UTF-8
+      sonar.exclusions=**/mode_modules/**,**/*.spec.ts
+      sonar.tests=src
+      sonar.test.inclusions=**/*spec.ts
+      sonar.typescript.lcov.reportPaths=${Build.SourcesDirectory)/**/coverage/lcov.info
+      sonar.typescript.exclusions=**/node_modules/**,**/typings.d.ts,**/main.ts,**/environments/environment*.ts, **/*routing.module.ts
+
 #Build
 - script: |
     npm install -g @angular/cli
+    npm install -g sonarqube-scanner
     cd Ang-GACD-UI
     npm install
     ng build --prod="true"
@@ -32,6 +48,16 @@ steps:
   
   displayName: "Running Tests"
   continueOnError: True
+  
+- script: |
+     cd Ang-GACD-UI
+     sonar-scanner
+  displayName: 'sonar analysis'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '**/cobertura.txt'
 
 #Deploy
 - task: AzureRmWebAppDeployment@4
