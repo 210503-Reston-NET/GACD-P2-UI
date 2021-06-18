@@ -32,6 +32,7 @@ steps:
 #Build
 - script: |
     npm install -g @angular/cli
+    npm install -g sonarqube-scanner
     cd Ang-GACD-UI
     npm install
     ng build --prod="true"
@@ -50,7 +51,8 @@ steps:
   
 - script: |
      cd Ang-GACD-UI
-     npm run sonar
+     npm sonarqube-scanner-node
+  displayName: 'sonar analysis'
 
 - task: PublishCodeCoverageResults@1
   inputs:
