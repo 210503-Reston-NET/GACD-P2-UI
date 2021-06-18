@@ -51,7 +51,7 @@ steps:
   
 - script: |
      cd Ang-GACD-UI
-     npm sonarqube-scanner-node
+     sonar-scanner
   displayName: 'sonar analysis'
 
 - task: PublishCodeCoverageResults@1
