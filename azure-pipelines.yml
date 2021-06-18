@@ -58,6 +58,7 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/Ang-GACD-UI/coverage/Ang-GACD-UI/cobertura.txt'
+    reportDirectory: '$(Build.SourcesDirectory)/_work/_temp/cchtml/' 
 
 #Deploy
 - task: AzureRmWebAppDeployment@4
