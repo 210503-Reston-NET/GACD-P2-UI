@@ -54,10 +54,16 @@ steps:
      sonar-scanner
   displayName: 'sonar analysis'
 
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/Ang-GACD-UI/coverage/Ang-GACD-UI/cobertura.txt'
+- task: SonarCloudAnalyze@1
+  displayName: Run Code Analysis
+- task: SonarCloudPublish@1
+  displayName: Publish Code Analysis
+
+
+# - task: PublishCodeCoverageResults@1
+#   inputs:
+#     codeCoverageTool: 'Cobertura'
+#     summaryFileLocation: '$(System.DefaultWorkingDirectory)/Ang-GACD-UI/coverage/Ang-GACD-UI/cobertura.txt'
 
 #Deploy
 - task: AzureRmWebAppDeployment@4
