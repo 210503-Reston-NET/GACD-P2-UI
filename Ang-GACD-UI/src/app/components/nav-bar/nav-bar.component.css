@@ -1,6 +1,3 @@
-/* .logo img{
-    height: fit-content;
-} */
 
 .pop-menu_container-active {
     pointer-events: auto;
@@ -22,7 +19,6 @@
 .pop-menu_container-active::before {
     opacity: 0.3;
 }
-
 
 
 .profile-image_container {
@@ -57,7 +53,6 @@
     border-radius: 2rem;
     background-color: black;
     border-radius: 20px;
-    /*box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe; */
 }
 
 .nav-item{
@@ -72,7 +67,6 @@
     border-radius: 2rem;
     background-color: black;
     border-radius: 20px;
-    /*box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;*/
 }
 
 .menu-header {
@@ -114,14 +108,25 @@
     cursor: pointer;
 }
 
-/*pop out button*/
-.nav-btn{
+.nav-btn{   
+    margin: .2em;
+    border: transparent;
+    background-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 40px;
+    font-family: 'Press Start 2P', cursive;
+    transition-duration: 0.4s;
     
 }
+
 .nav-btn:hover{ 
-    color: #a318ff ;
+    color: #bc5efb ;
 }
-.ul{
-    list-style-type: none;
-    padding: 0px;
+
+.log-btn{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    margin: 6px;
+    margin-bottom: 70px;
 }

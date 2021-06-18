@@ -6,13 +6,12 @@
     font-family: 'Courier New', Courier, monospace;
     color: white;
     position: relative;
-    left: 0%;
-    
+    left: 0%;  
 }
+
 .test_site textarea{
     width: 600px;
     height: 400px;
-
 }
 
 .input-form{

@@ -1,28 +1,40 @@
-<div class="">
-    <div>Competition Name</div>
-    <input type="text" placeholder="Enter competition name" [(ngModel)]= "name">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2">
+            <div>Competition Name</div>
+            <input type="text" class="form-control" placeholder="Enter competition name" [(ngModel)]= "name">
+        </div>
+        <div class="col-2">
+            <label for="comp-start">Competition start:</label><br>
+            <input type="datetime-local" class="form-control" id="comp-start"
+            name="comp-start" [(ngModel)]="startDate" max="{{endDate}}">
+        </div>
+        <div class="col-2">
+            <label for="comp-end">Competition end:</label><br>
+            <input type="datetime-local" class="form-control" id="comp-end"
+            name="comp-end" [(ngModel)]="endDate" min="{{startDate}}">
+        </div>
+        <div class="col-3">
+            <div>Category</div>
+            <app-lang-select (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
+            <button class="btn btn-light kwik-btn" (click)="newSnippet()">New Snippet</button>
+            <button class="btn btn-light kwik-btn" type="button" value="create" (click)="CreateCompetition()">Create</button>{{compId}}
+            <div *ngIf="compId">
+            <span>Competition Link:</span><a href="https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}">https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}</a>
+        </div>
+        </div>
+    </div>
+    <div class="mt-2">
+        <div class="container-fluid input-form">
+          <div class="row">
+            <div class="col-12">
+                <div>Snippet:</div>
+                <pre contenteditable="true" [(ngModel)]="snippet" class="text-light bg-dark p-1" ngDefaultControl>{{snippet}}</pre>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <label for="comp-start">Competition start:</label><br>
-    <input type="datetime-local" id="comp-start"
-       name="comp-start" [(ngModel)]="startDate" max="{{endDate}}">
-</div>
-<div>
-    <label for="comp-end">Competition end:</label><br>
-    <input type="datetime-local" id="comp-end"
-       name="comp-end" [(ngModel)]="endDate" min="{{startDate}}">
-</div>
-<div class="">
-    <div>Category</div>
-    <app-lang-select (newLangSelectedEvent)="langSelected($event)"></app-lang-select>
-    <button class="kwik-btn" (click)="newSnippet()">New Snippet</button>
-</div>
-<div class="col-12">
-    <div>Snippet:</div>
-    <pre contenteditable="true" [(ngModel)]="snippet" class="text-light bg-dark p-1" ngDefaultControl>{{snippet}}</pre>
-</div>
-<button type="button" value="create" (click)="CreateCompetition()">Create</button>{{compId}}
-<div *ngIf="compId">
-    <span>Competition Link:</span><a href="https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}">https://kwikkoder.azurewebsites.net/CompetitionTest/{{compId}}</a>
+    
 </div>
 
