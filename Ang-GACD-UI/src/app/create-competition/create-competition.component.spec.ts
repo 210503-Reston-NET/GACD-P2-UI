@@ -12,11 +12,13 @@ import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { DatePipe } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DisplayDatePipe } from '../pipes/display-date.pipe';
+import { Router } from '@angular/router';
 
 describe('CreateCompetitionComponent', () => {
   let component: CreateCompetitionComponent;
   let fixture: ComponentFixture<CreateCompetitionComponent>;
   let newComp: CompModel;
+
   class MockAuthService{
 
   }
@@ -40,7 +42,9 @@ describe('CreateCompetitionComponent', () => {
     postCompetition(){};
     
   }
+  
   beforeEach(async () => {
+  
     await TestBed.configureTestingModule({
       imports:[RouterTestingModule],
       declarations: [ CreateCompetitionComponent ],
@@ -52,17 +56,37 @@ describe('CreateCompetitionComponent', () => {
       ],
     })
     .compileComponents();
+    
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateCompetitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have date set',()=>{
+    expect(component.realStartDate).toBeTruthy();
+  });
+
+  it('should get new snippet', ()=>{
+    let spy = spyOn(component, 'newSnippet')
+    component.langSelected(-1)
+    expect(spy).toHaveBeenCalled()    
+  });
+
+  // it('should call thing', ()=>{
+  //  let ser = TestBed.inject(RestService)
+  //  let spy = spyOn(ser, 'postCompetition')
+  //  component.CreateCompetition();
+  //   expect(spy).toHaveBeenCalledTimes(0)
+  // });
+  
   
   // test comp model creation 
   // it('should create model', () => {

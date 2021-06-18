@@ -3,14 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BetInputModel } from 'src/Models/BetInputModel';
 import { RestService } from 'src/Services/rest.service';
+import { CompStatModel  } from 'src/Models/CompStatModel';
 
 import { CompetitionResultComponent } from './competition-result.component';
 
 describe('CompetitionResultComponent', () => {
   class MockRestService
   {
-    getCompetitionResults(): Promise<any>{
-      return new Promise<void>((resolve,reject)=> {});
+    getCompetitionResults(): Promise<CompStatModel[]>{
+      return new Promise<CompStatModel[]>(()=> {});
     }
     //put api calls here if you want to test them
   }
@@ -19,6 +20,7 @@ describe('CompetitionResultComponent', () => {
   let fixture: ComponentFixture<CompetitionResultComponent>;
   let router: Router;
   let rest: RestService;
+  let spy1: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,12 +37,14 @@ describe('CompetitionResultComponent', () => {
     })
     .compileComponents();
     router = TestBed.inject(Router);
-    rest = TestBed.inject(RestService);
+    rest = TestBed.inject(RestService)
+   
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionResultComponent);
     component = fixture.componentInstance;
+   
     //fixture.detectChanges();
   });
 
@@ -53,5 +57,12 @@ describe('CompetitionResultComponent', () => {
     component.TakeTest();
     expect(spy).toHaveBeenCalled();
   });
+
+  // it('should get results', () =>{
+  //   let rest = TestBed.inject(RestService);
+  //   let spy = spyOn(rest, 'getCompetitionResults')
+  //   component.getResults()   
+  //   expect(spy).toHaveBeenCalled();
+  // });
 
 });
