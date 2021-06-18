@@ -31,24 +31,50 @@ describe('RestService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });  
-   
-    it('getUserStats should return', () =>{
-      const userStats = [{username : "A",
-        userID: "1",
-        averagewpm! : 50,
-        averageaccuracy! : 60,
-        numberoftests! : 4,
-        totaltesttime! : 12,
-        category: 0}]
+  it('getUserStats should return', () =>{
+    const userStats = [{username : "A",
+      userID: "1",
+      averagewpm! : 50,
+      averageaccuracy! : 60,
+      numberoftests! : 4,
+      totaltesttime! : 12,
+      category: 0}]
 
-        service.getUserStats().then(res =>{
-          expect(res).toEqual(userStats)
-        });
-        const req = httpTestingController.expectOne(`${environment.dev.serverUrl}api/UserStat/all`);
-        expect(req.request.method).toEqual("GET");
-        req.flush(userStats);
-        httpTestingController.verify();
-     });
+      service.getUserStats().then(res =>{
+        expect(res).toEqual(userStats)
+      });
+      const req = httpTestingController.expectOne(`${environment.dev.serverUrl}api/UserStat/all`);
+      expect(req.request.method).toEqual("GET");
+      req.flush(userStats);
+      httpTestingController.verify();
+   });
+   it('getUsername should return', () =>{
+    const username = {username : "name",
+      name: "steve",
+      revapoints: 1000,
+      userId: 2}
+
+      service.getUserName().then(res =>{
+        expect(res).toEqual(username)
+      });
+      const req = httpTestingController.expectOne(`${environment.dev.serverUrl}api/User/username`);
+      expect(req.request.method).toEqual("GET");
+      req.flush(username);
+      httpTestingController.verify();
+   });
+   it('getUsernameModel should return', () =>{
+    const username= {userName: "steve1",
+    name: "steve"}
+
+      service.getloggedInUser().then(res =>{
+        expect(res).toEqual(username)
+      });
+      const req = httpTestingController.expectOne(`${environment.dev.serverUrl}api/User/username`);
+      expect(req.request.method).toEqual("GET");
+      req.flush(username);
+      httpTestingController.verify();
+   });
+    
   
   // });
   });
