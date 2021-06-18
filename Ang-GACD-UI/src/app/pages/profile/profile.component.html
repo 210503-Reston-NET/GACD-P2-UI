@@ -2,10 +2,6 @@
 <div *ngIf="auth.user$ | async as user">
   <div class="container">
     <div class="row">
-      <div class="spacer">
-      </div>
-    </div>
-    <div class="row">
       <div class="col-md-2"></div>
         <div class="col-md-4">
           <div class="profile-img">
@@ -18,95 +14,103 @@
         </div>
           <div class="col-md-4">
             <div class="profile-head">
-                <h2>Name: {{ UserInfo.name }}</h2>
-                <h3>Email: {{ user.email }}</h3>
-                <h4>Rank: Mega Coder</h4>
+                <h2 class="prof-info">Name:  {{ UserInfo.name }}</h2>
+                <h3 class="prof-info">Email:  {{ user.email }}</h3>
+                <h4 class="prof-info">Rank:  Mega Coder</h4>
             </div>
           </div>
-       <div class="col-md-4"></div>   
+      <div class="col-md-4"></div>   
+  </div>
+  <div class="row">
+    <div class="spacer">
+    </div>
   </div>
   <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <mat-tab-group class="tab-bar" animationDuration="1500ms">
-      <mat-tab class="info" label="Info">
+    <mat-tab-group dynamicHeight class="tab-bar text-light"  animationDuration="1500ms">
+      <mat-tab class="info text-light" backgroundColor="primary" label="Info">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-4 text-light">
             <label>User ID</label>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-light">
             <p>{{UserInfo.userId}}</p>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-light">
           <label>RevaPoints</label>
       </div>
-      <div class="col-sm-6">
-          <p>{{UserInfo.revapoints}}</p> <button class="kwik-btn" (click)="claimBets(UserInfo.userId)">Claim Bets</button>
+      <div class="col-sm-4 text-light">
+          <p>{{UserInfo.revapoints}}</p> 
+         
       </div>
-          <div class="col-sm-4">
+      <div class="col-sm-4 text-light">
+        <button class="btn btn-light" (click)="claimBets(UserInfo.userId)">Claim Bets</button>
+      </div>
+          <div class="col-sm-4 text-light">
               <label>User Name</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 text-light">
               <p>{{user.nickname}}</p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 text-light">
             <label>Email Address</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 text-light">
             <p>{{user.name}}</p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 text-light">
             <label>Nick Name</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 text-light">
             <p>{{user.nickname}}</p>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 text-light">
             <label>About Me</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 text-light">
             <p>I love coding and video games.
               I will destory everyone with my ultra typing skills</p>
           </div>
         </div> 
       </mat-tab>
-      <mat-tab label="Stats">
+      <mat-tab class="text-light" label="Stats">
         <tr *ngFor="let statMod of statOb;">
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-light">
               <label>Category</label>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 text-light">
               <p>{{statMod.category | displayCategory}}</p>
           </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-light">
                 <label>Words Per Minute</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 text-light">
                 <p>{{statMod.averagewpm}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-light">
               <label>Average Accuracy</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 text-light">
               <p>{{statMod.averageaccuracy | displayPercent}}%</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-light">
               <label>Tests Taken</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 text-light">
               <p>{{statMod.numberoftests}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 text-light">
               <label>Test Time</label>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 text-light">
               <p>{{statMod.totaltesttime | displayTime}}</p>
             </div>
           </div>
           </tr>
       </mat-tab>
-      <mat-tab label="Progress">
+      <mat-tab class="text-light" label="Progress">
         <ng-template matTabContent>
         <app-progress-graph></app-progress-graph>
         </ng-template>

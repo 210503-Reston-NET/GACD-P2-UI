@@ -55,6 +55,13 @@
       <div class="row">
           <div class="col-12">
             <pre tabindex="0" (click)= "focusinput" (keydown)="keyIntercept($event)" class="text-light bg-dark p-4" ><span *ngFor="let t of state.wordarray; index as i"[attr.id]="'char-'+i">{{t}}</span></pre>
+            <button class="btn btn-light kwik-btn" *ngIf="testmat" (click)="newTest()" >New Test</button>
+                <div *ngIf="state.finished">
+                    <div class = "container">
+                        <h1>{{result.text}}</h1>
+                        <img src = 'assets/images/{{result.image}}.jpg'>
+                    </div>
+                </div>
           </div>
       </div>
     </div>
@@ -63,13 +70,7 @@
     <textarea id="snippet_area" value="{{state.words}}" name="display" placeholder="Snipets go here" rows="10" readonly="true"></textarea>
     <textarea id=" " name="input" [(ngModel)]="state.enteredText"   (keydown)="keyIntercept($event)" (ngModelChange)="onWordChange($event)" placeholder="User entry goes here" rows="10"></textarea>
 </div> -->
-<button class="kwik-btn" *ngIf="testmat" (click)="newTest()" >New Test</button>
-<div *ngIf="state.finished">
-    <div class = "container">
-        <h1>{{result.text}}</h1>
-        <img src = 'assets/images/{{result.image}}.jpg'>
-    </div>
-</div>
+
 
 <!-- <div>
     <h1>Author: {{ testmat.author }}</h1>

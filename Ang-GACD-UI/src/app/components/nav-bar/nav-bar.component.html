@@ -13,17 +13,17 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto" style="margin:1em;" >
         <li *ngIf="(auth.isAuthenticated$ | async) === false">
-          <button class="btn btn-primary btn-block nav-btn" (click)="loginWithRedirect()">
+          <button class="btn btn-primary btn-light btn-block log-btn" (click)="loginWithRedirect()">
             Log in
           </button>
         </li>
         <li *ngIf="(auth.isAuthenticated$ | async) === false">
-          <button class="btn btn-primary btn-block nav-btn" (click)="loginWithRedirect()">
+          <button class="btn btn-primary btn-light btn-block log-btn" (click)="loginWithRedirect()">
             Sign Up
           </button>
         </li>
         <li *ngIf="auth.isAuthenticated$ | async">
-          <button class="btn btn-danger btn-block nav-btn" (click)="logout()">
+          <button class="btn btn-danger btn-light btn-block log-btn" (click)="logout()">
             Log out
           </button>
         </li>
