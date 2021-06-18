@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
 import { AuthService } from '@auth0/auth0-angular';
-import { UserService } from 'src/Services/User.service';
-import { TestService } from 'src/Services/Test.Service';
+
 
 
 @Component({
@@ -19,7 +18,7 @@ export class AppComponent {
   Test: any;
   profileJson: string = null;
 
-  constructor(private userserv : UserService, public auth: AuthService, private testserv : TestService){
+  constructor(public auth: AuthService){
   }
 
   ngOnInit(){
@@ -31,18 +30,18 @@ export class AppComponent {
   
 
 
-  GenerateUsers()
-  {
-    return this.userserv.GetAllMembers().then(result => this.User = result)
-  }
+  // GenerateUsers()
+  // {
+  //   return this.userserv.GetAllMembers().then(result => this.User = result)
+  // }
 
-  GenerateTest()
-  {
-    return this.testserv.GenerateTest().subscribe((data: {}) => {
-      this.Test = data;
-    })
-  }
-  AnalyzeTest(testString = '', Userinput= ''){
+  // GenerateTest()
+  // {
+  //   return this.testserv.GenerateTest().subscribe((data: {}) => {
+  //     this.Test = data;
+  //   })
+  // }
+  // AnalyzeTest(testString = '', Userinput= ''){
     
-  }
+  // }
 }
