@@ -11,6 +11,7 @@ import { of } from 'rxjs';
 import { ProfileComponent } from './profile.component';
 
 describe('ProfileComponent', () => {
+  
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   class MockAuthService {

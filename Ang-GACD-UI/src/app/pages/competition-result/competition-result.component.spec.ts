@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BetInputModel } from 'src/Models/BetInputModel';
 import { RestService } from 'src/Services/rest.service';
 
 import { CompetitionResultComponent } from './competition-result.component';
@@ -40,10 +41,17 @@ describe('CompetitionResultComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionResultComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should place bet', () =>{
+    spyOn(component, 'TakeTest');
+    component.TakeTest();
+    expect(component.TakeTest()).toHaveBeenCalled();
+  });
+
 });
