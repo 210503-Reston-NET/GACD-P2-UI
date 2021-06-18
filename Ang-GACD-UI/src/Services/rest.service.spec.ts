@@ -29,18 +29,16 @@ describe('RestService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-  
-  describe('#getUserStats', () =>{
-    let expectedStats: StatModel[];
+  });  
+   
     //Test 1
-    it('getUserStats should return', (done : DoneFn) =>{
-      service.getUserStats().then((value:StatModel[]) =>{
-      expect(value.length).toBeGreaterThan(-2)
-      done();
-    });
-  });
-  });
+    // it('getUserStats should return', (done : DoneFn) =>{
+    //   service.getUserStats().then((value:StatModel[]) =>{
+    //   expect(value.length).toBeGreaterThan(-2)
+    //   done();
+    // });
+  
+  // });
 
 });
 
