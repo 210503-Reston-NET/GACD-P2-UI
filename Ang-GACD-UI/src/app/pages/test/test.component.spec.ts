@@ -8,8 +8,9 @@ import { ActivatedRoute, Router, ɵangular_packages_router_router_o } from '@ang
 import { Observable } from 'rxjs';
 import { DisplayCategoryPipe } from '../../pipes/display-category.pipe';
 import { Pipe, PipeTransform } from '@angular/core';
+import { ResultModel } from 'src/Models/ResultModel';
 //import { Interface } from 'readline';
-import { templateJitUrl } from '@angular/compiler';
+import { ResourceLoader, templateJitUrl } from '@angular/compiler';
 describe('TestComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
@@ -20,7 +21,7 @@ describe('TestComponent', () => {
   class MockAuthService {}
   class MockRestService
   {
-    //put api calls here if you want to test them
+    postTestResults(){};
   }
 
 
@@ -30,7 +31,12 @@ describe('TestComponent', () => {
           //Do stuff here, if you want
           return value;
       }
+    
 }
+  interface MockResult {
+    image : string;
+    text : string;
+  }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TestComponent, MockPipe ],
@@ -39,6 +45,7 @@ describe('TestComponent', () => {
         {provide: RestService, useClass: MockRestService},
         {provide: ActivatedRoute,useValue: {id: 0}},
         {provide: DisplayCategoryPipe, useClass: MockPipe},
+        
         
         ],
         imports: [
@@ -71,5 +78,92 @@ describe('TestComponent', () => {
     let time = 60000
     let wpm = component.wordsPerMinute(chars, time);
     expect(wpm).toBe(50);
+  });
+  it('testSlowResult', () => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    component.state = {
+      words: '',
+      wordarray: new Array(),
+      typedarray: new Array(),
+      enteredText: '',
+      errors: 0,
+      started: false,
+      startTime: null,
+      timeTaken: 0,
+      letterPosition: 0,
+      //wordPosition: 0,
+      finished: false,
+      correctchars: 0
+    }
+    component.result = {
+      image: "",
+      text: ""
+    }
+    component.category = 1;
+    component.state.correctchars = 100;
+    component.state.errors = 0;    
+    component.timeTaken = 60000;
+    component.wpm = 20;
+    component.submitResults();
+    expect(component.result.text).toBe("Keep working at typing!");
+  });
+  it('testAverageResult', () => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    component.state = {
+      words: '',
+      wordarray: new Array(),
+      typedarray: new Array(),
+      enteredText: '',
+      errors: 0,
+      started: false,
+      startTime: null,
+      timeTaken: 0,
+      letterPosition: 0,
+      //wordPosition: 0,
+      finished: false,
+      correctchars: 0
+    }
+    component.result = {
+      image: "",
+      text: ""
+    }
+    component.category = 1;
+    component.state.correctchars = 200;
+    component.state.errors = 0;    
+    component.timeTaken = 60000;
+    component.wpm = 40;
+    component.submitResults();
+    expect(component.result.text).toBe("You're improving!");
+  });
+  it('testAverageResult', () => {
+    fixture = TestBed.createComponent(TestComponent);
+    component = fixture.componentInstance;
+    component.state = {
+      words: '',
+      wordarray: new Array(),
+      typedarray: new Array(),
+      enteredText: '',
+      errors: 0,
+      started: false,
+      startTime: null,
+      timeTaken: 0,
+      letterPosition: 0,
+      //wordPosition: 0,
+      finished: false,
+      correctchars: 0
+    }
+    component.result = {
+      image: "",
+      text: ""
+    }
+    component.category = 1;
+    component.state.correctchars = 400;
+    component.state.errors = 0;    
+    component.timeTaken = 60000;
+    component.wpm = 80;
+    component.submitResults();
+    expect(component.result.text).toBe("You're a programming genius!");
   });
 });
