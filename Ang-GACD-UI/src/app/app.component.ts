@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Usermodel } from 'src/Models/UserModel';
 import { AuthService } from '@auth0/auth0-angular';
-
+//import { UserService } from 'src/Services/User.service';
+//import { TestService } from 'src/Services/Test.Service';
 
 
 @Component({
@@ -30,18 +31,8 @@ export class AppComponent {
   
 
 
-  // GenerateUsers()
-  // {
-  //   return this.userserv.GetAllMembers().then(result => this.User = result)
-  // }
-
-  // GenerateTest()
-  // {
-  //   return this.testserv.GenerateTest().subscribe((data: {}) => {
-  //     this.Test = data;
-  //   })
-  // }
-  // AnalyzeTest(testString = '', Userinput= ''){
+  
+  AnalyzeTest(testString = '', Userinput= ''){
     
-  // }
+  }
 }
