@@ -53,7 +53,14 @@ describe('CompetitionTestComponent', () => {
     component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
-
+  it('testWPM', () => {
+    fixture = TestBed.createComponent(CompetitionTestComponent);
+    component = fixture.componentInstance;
+    let chars = 250
+    let time = 60000
+    let wpm = component.wordsPerMinute(chars, time);
+    expect(wpm).toBe(50);
+  });
 
   
 });
