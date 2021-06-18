@@ -26,7 +26,7 @@ steps:
       sonar.exclusions=**/mode_modules/**,**/*.spec.ts
       sonar.tests=src
       sonar.test.inclusions=**/*spec.ts
-      sonar.typescript.lcov.reportPaths=${Build.SourcesDirectory)/**/coverage/lcov.info
+      sonar.typescript.lcov.reportPaths=/coverage/Ang-GACD-UI/lcov.info
       sonar.typescript.exclusions=**/node_modules/**,**/typings.d.ts,**/main.ts,**/environments/environment*.ts, **/*routing.module.ts
 
 #Build
@@ -58,7 +58,7 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/Ang-GACD-UI/coverage/Ang-GACD-UI/cobertura.txt'
-    reportDirectory: '${Build.SourcesDirectory)/**/coverage/'
+    reportDirectory: '**/coverage/Ang-GACD-UI/'
 #Deploy
 - task: AzureRmWebAppDeployment@4
   inputs:
