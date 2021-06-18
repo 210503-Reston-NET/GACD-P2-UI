@@ -5,6 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { RestService } from './rest.service';
 import { ɵɵsetComponentScope } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 describe('RestService', () => {
   let httpClient: HttpClient;
@@ -31,12 +33,23 @@ describe('RestService', () => {
     expect(service).toBeTruthy();
   });  
    
-    //Test 1
-    // it('getUserStats should return', (done : DoneFn) =>{
-    //   service.getUserStats().then((value:StatModel[]) =>{
-    //   expect(value.length).toBeGreaterThan(-2)
-    //   done();
-    // });
+    it('getUserStats should return', () =>{
+      const userStats = [{username : "A",
+        userID: "1",
+        averagewpm! : 50,
+        averageaccuracy! : 60,
+        numberoftests! : 4,
+        totaltesttime! : 12,
+        category: 0}]
+
+        service.getUserStats().then(res =>{
+          expect(res).toEqual(userStats)
+        });
+        const req = httpTestingController.expectOne(`${environment.dev.serverUrl}api/UserStat/all`);
+        expect(req.request.method).toEqual("GET");
+        req.flush(userStats);
+        httpTestingController.verify();
+     });
   
   // });
 
