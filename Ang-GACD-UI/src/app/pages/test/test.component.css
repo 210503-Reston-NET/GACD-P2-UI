@@ -15,6 +15,10 @@
 
 }
 
+.input-form{
+    width: 70%;
+}
+
 .info-box {
     text-align: center;
     /* display: block; */

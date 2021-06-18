@@ -6,8 +6,14 @@ mat-tab-group{
 mat-tab{
     color:azure;
 }
-
+.info{
+    color: white;
+}
 .spacer{
     width: 100%;
     height: 150px;
+}
+.profile-head{
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
 }
