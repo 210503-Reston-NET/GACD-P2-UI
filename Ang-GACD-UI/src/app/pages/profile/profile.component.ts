@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
       claims => (console.log(claims))
     );
     this.getStats();
-    this.getUser();
+    //this.getUser();
   }
 
   updateUserName():void {
@@ -38,8 +38,8 @@ export class ProfileComponent implements OnInit {
   statOb: StatModel[] = [];
   
   getUser():void{
-    this.api.getUserName().then(
-      (obj)=> {this.UserInfo = obj;})
+    // this.api.getUserName().then(
+    //   (obj)=> {this.UserInfo = obj;})
   }
 
   getStats():void{
