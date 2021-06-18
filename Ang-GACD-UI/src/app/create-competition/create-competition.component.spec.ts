@@ -15,17 +15,20 @@ describe('CreateCompetitionComponent', () => {
   let component: CreateCompetitionComponent;
   let fixture: ComponentFixture<CreateCompetitionComponent>;
   let newComp: CompModel;
-  let MockAuthService = {} as AuthService
 
   class MockRestService
   {
-    getTestContentByCatagoryId(){};
+    getTestContentByCatagoryId(id: number){};
     getloggedInUser(){};
     postCompetition(){};
   }
+  class MockAuthService
+  {
+
+  }
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[RouterTestingModule, SnackBarComponent, DatePipe],
+      imports:[RouterTestingModule, SnackBarComponent, DatePipe, LangSelectComponent],
       declarations: [ CreateCompetitionComponent ],
       providers: [{provide: RestService, useClass: MockRestService}, {provide: AuthService, useClass: MockAuthService} ],
     })
