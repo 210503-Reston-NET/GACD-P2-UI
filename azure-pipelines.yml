@@ -29,6 +29,7 @@ steps:
       sonar.test.inclusions=**/*.spec.ts
       sonar.ts.tslintconfigpath=tslint.json
       sonar.javascript.lcov.reportPaths=coverage/Ang-GACD-UI/lcov.info
+      sonar.typescript.exclusions=**/node_modules/**,**/typings.d.ts,**/main.ts,**/environments/environment*.ts, **/*routing.module.ts
 
 #Build
 - script: |
