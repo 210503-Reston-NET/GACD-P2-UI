@@ -17,12 +17,12 @@ export class CompetitionResultComponent implements OnInit {
   faSync = faSync;
   
   ngOnInit(): void {
+   this.compId = Number(this.myRoute.snapshot.params.compId);
    this.getResults()
   }
 
-  getResults(): void{
-    this.compId = Number(this.myRoute.snapshot.params.compId);
-    this.api.getCompetitionResults(this.compId).then(res => {this.compStatModels = res; console.log(res)});
+  getResults(): void{    
+    this.api.getCompetitionResults(this.compId).then(res => {this.compStatModels = res});
   }
 
   TakeTest(): void{
