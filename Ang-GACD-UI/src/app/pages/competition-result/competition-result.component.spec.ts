@@ -49,9 +49,9 @@ describe('CompetitionResultComponent', () => {
   });
 
   it('should place bet', () =>{
-    spyOn(component, 'TakeTest');
+    let spy = spyOn(component, 'TakeTest');
     component.TakeTest();
-    expect(component.TakeTest()).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
 });
