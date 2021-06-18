@@ -102,11 +102,12 @@ export class CreateCompetitionComponent implements OnInit {
         author: this.author,
         compId: 0
       };
+      //console.log(this.snippet);
 
       this.compId = this.api.postCompetition(newComp);
       this.snackBar.displaySuccess("Competition Added!");
       this.router.navigate(['./competitions']).then();
-      }    
+      }
     );   
    }
 

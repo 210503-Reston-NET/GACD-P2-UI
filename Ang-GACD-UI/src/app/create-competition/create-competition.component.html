@@ -27,14 +27,13 @@
     </div>
     <div class="mt-2">
         <div class="container-fluid input-form">
-          <div class="row">
-            <div class="col-12">
-                <div>Snippet:</div>
-                <pre contenteditable="true" [(ngModel)]="snippet" class="text-light bg-dark p-1" ngDefaultControl>{{snippet}}</pre>
+            <div class="row">
+                <div class="col-12">
+                    <div>Snippet:</div>
+                    <pre contenteditable="true" [textContent]="snippet" (input)="snippet=$event.target.textContent" class="text-light bg-dark p-1">{{snippet}}</pre>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-    
+    </div>    
 </div>
 
